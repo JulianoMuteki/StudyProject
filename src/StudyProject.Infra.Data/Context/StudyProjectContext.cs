@@ -32,6 +32,8 @@ namespace StudyProject.Infra.Data.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //https://stackoverflow.com/questions/37493095/entity-framework-core-rc2-table-name-pluralization
+            modelBuilder.RemovePluralizingTableNameConvention();
 
             //modelBuilder.Entity<Blog>(entity =>
             //{
