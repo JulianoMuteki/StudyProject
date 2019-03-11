@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="EntityConfig\" />
-    <Folder Include="Repositories\" />
+    <Folder Include="Common\" />
+    <Folder Include="Interfaces\" />
   </ItemGroup>
 
   <ItemGroup>
