@@ -5,6 +5,7 @@ Este projeto é usado como base de estudo para aperfeiçoar minhas habilidades t
 
 Referências:
 
+ - https://dotnet.microsoft.com/learn/web/aspnet-architecture
  - https://docs.microsoft.com/pt-br/ef/core/
  - https://github.com/thiagolunardi/MvcMusicStoreDDD
  - https://www.eduardopires.net.br/2014/10/tutorial-asp-net-mvc-5-ddd-ef-automapper-ioc-dicas-e-truques/
