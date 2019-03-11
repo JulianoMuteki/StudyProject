@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace StudyProject.Infra.Repository.Interfaces
+namespace StudyProject.Domain.Interfaces
 {
     public interface IUnitOfWork
     {

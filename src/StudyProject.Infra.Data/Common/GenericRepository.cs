@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using StudyProject.Domain.Interfaces;
 using StudyProject.Infra.Context;
-using StudyProject.Infra.Repository.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
