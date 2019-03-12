@@ -13,3 +13,4 @@ Referências:
  - https://dotnet.microsoft.com/learn/web
  - https://docs.microsoft.com/pt-br/aspnet/core/fundamentals/?view=aspnetcore-2.2&tabs=windows
  - https://docs.microsoft.com/pt-br/aspnet/core/?view=aspnetcore-2.2
+ - https://www.c-sharpcorner.com/article/code-first-approach-in-asp-net-core-mvc-with-ef-core-migration/
