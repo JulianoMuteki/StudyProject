@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using StudyProject.CrossCutting.Ioc;
 
 namespace StudyProject.UI.Web
 {
@@ -59,6 +60,14 @@ namespace StudyProject.UI.Web
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+        }
+
+        private static void RegisterServices(IServiceCollection services)
+        {
+            // Adding dependencies from another layers (isolated from Presentation)
+            InfraBootStrapperModule.RegisterServices(services);
+            RepositoryBootStrapperModule.RegisterServices(services);
+            ApplicationBootStrapperModule.RegisterServices(services);
         }
     }
 }

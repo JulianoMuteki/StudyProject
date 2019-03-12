@@ -5,7 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\StudyProject.Domain\StudyProject.Domain.csproj" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\StudyProject.Application\StudyProject.Application.csproj" />
     <ProjectReference Include="..\StudyProject.Infra.Data\StudyProject.Infra.Repository.csproj" />
   </ItemGroup>
 
