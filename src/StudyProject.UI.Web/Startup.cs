@@ -11,6 +11,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using StudyProject.CrossCutting.Ioc;
 using AutoMapper;
+using StudyProject.Infra.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace StudyProject.UI.Web
 {
@@ -32,6 +34,8 @@ namespace StudyProject.UI.Web
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+
+            services.AddDbContext<StudyProjectContext>(item => item.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddAutoMapper();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
