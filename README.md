@@ -1,7 +1,11 @@
-# StudyProject
+# Study Project
 ASP.NET MVC Core + DDD + EF Core
 
+Futuro: Docker, SOLID, CQRS, MongoDB, message queues 📝
+e claro, Azure ☁️
+
 Este projeto é usado como base de estudo para aperfeiçoar minhas habilidades técnicas. Estou modelando conforme tutoriais, vídeos e demos.
+Ainda muitos bugs mas faz parte. Estou aberto a sugestões, dicas 😁
 
 Referências:
 
