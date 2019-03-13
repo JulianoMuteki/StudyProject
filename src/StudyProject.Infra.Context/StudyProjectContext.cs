@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using StudyProject.Domain.Entities;
+using StudyProject.Infra.Context.Mapping;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,7 +10,7 @@ namespace StudyProject.Infra.Context
     public class StudyProjectContext : DbContext
     {
         //public DbSet<Blog> Blogs { get; set; }
-        //public DbSet<Post> Posts { get; set; }
+        public DbSet<Client> Clients { get; set; }
 
         public StudyProjectContext()
         {
@@ -33,7 +35,11 @@ namespace StudyProject.Infra.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //https://stackoverflow.com/questions/37493095/entity-framework-core-rc2-table-name-pluralization
-            modelBuilder.RemovePluralizingTableNameConvention();
+            //modelBuilder.RemovePluralizingTableNameConvention();
+
+            modelBuilder.ApplyConfiguration(new ClientMap());
+
+            base.OnModelCreating(modelBuilder);
 
             //https://medium.com/agilix/entity-framework-core-enums-ee0f8f4063f2
             //https://medium.com/@kamgrzybek/domain-model-encapsulation-and-pi-with-entity-framework-2-2-f4a52e892ff5

@@ -6,7 +6,7 @@ using StudyProject.Domain.Entities;
 
 namespace StudyProject.Infra.Context.Mapping
 {
-    public class ClientConfiguration : IEntityTypeConfiguration<Client>
+    public class ClientMap : IEntityTypeConfiguration<Client>
     {
         public void Configure(EntityTypeBuilder<Client> builder)
         {

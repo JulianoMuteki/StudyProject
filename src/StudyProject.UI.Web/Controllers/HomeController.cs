@@ -1,17 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using StudyProject.Domain.Services;
 using StudyProject.UI.Web.Models;
 
 namespace StudyProject.UI.Web.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IClientApplicationService _userService;
+
+        public HomeController(IClientApplicationService userService)
+        {
+            _userService = userService;
+        }
+
         public IActionResult Index()
         {
+            var clients = _userService.GetAll();
+
             return View();
         }
 
