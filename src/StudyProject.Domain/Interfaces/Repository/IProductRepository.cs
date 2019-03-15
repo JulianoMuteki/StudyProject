@@ -1,9 +1,7 @@
 ﻿using StudyProject.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using StudyProject.Domain.Interfaces.Base;
 
-namespace StudyProject.Domain.Interfaces
+namespace StudyProject.Domain.Interfaces.Repository
 {
     public interface IProductRepository : IGenericRepository<Product>
     {

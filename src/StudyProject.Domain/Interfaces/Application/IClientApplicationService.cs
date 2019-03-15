@@ -1,10 +1,8 @@
 ﻿using StudyProject.Domain.Entities;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace StudyProject.Domain.Services
+namespace StudyProject.Domain.Interfaces.Application
 {
     public interface IClientApplicationService
     {
