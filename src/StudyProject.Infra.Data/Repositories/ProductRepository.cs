@@ -1,10 +1,7 @@
 ﻿using StudyProject.Domain.Entities;
-using StudyProject.Domain.Interfaces;
+using StudyProject.Domain.Interfaces.Repository;
 using StudyProject.Infra.Context;
 using StudyProject.Infra.Repository.Common;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace StudyProject.Infra.Data.Repositories
 {

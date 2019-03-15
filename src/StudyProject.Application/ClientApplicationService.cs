@@ -1,10 +1,10 @@
 ﻿using StudyProject.Domain.Entities;
-using StudyProject.Domain.Interfaces;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
-using StudyProject.Domain.Services;
+using StudyProject.Domain.Interfaces.Base;
+using StudyProject.Domain.Interfaces.Application;
 
 namespace StudyProject.Application
 {

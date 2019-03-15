@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using StudyProject.Domain.Services;
+using StudyProject.Domain.Interfaces.Application;
 using StudyProject.UI.Web.Models;
 
 namespace StudyProject.UI.Web.Controllers

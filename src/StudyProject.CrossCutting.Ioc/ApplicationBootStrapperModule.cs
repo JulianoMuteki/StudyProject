@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using StudyProject.Application;
-using StudyProject.Domain.Services;
+using StudyProject.Domain.Interfaces.Application;
 
 namespace StudyProject.CrossCutting.Ioc
 {
@@ -13,3 +13,4 @@ namespace StudyProject.CrossCutting.Ioc
         }
     }
 }
+

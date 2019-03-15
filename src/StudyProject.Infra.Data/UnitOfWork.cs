@@ -1,4 +1,4 @@
-﻿using StudyProject.Domain.Interfaces;
+﻿using StudyProject.Domain.Interfaces.Base;
 using StudyProject.Infra.Context;
 using StudyProject.Infra.Repository.Common;
 using System;

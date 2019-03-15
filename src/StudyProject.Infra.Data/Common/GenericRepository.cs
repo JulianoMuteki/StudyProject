@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using StudyProject.Domain.Interfaces;
+using StudyProject.Domain.Interfaces.Base;
 using StudyProject.Infra.Context;
 using System;
 using System.Collections.Generic;
