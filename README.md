@@ -7,6 +7,9 @@ e claro, Azure ☁️
 Este projeto é usado como base de estudo para aperfeiçoar minhas habilidades técnicas. Estou modelando conforme tutoriais, vídeos e demos.
 Ainda muitos bugs mas faz parte. Estou aberto a sugestões, dicas 😁
 
+Trello
+https://trello.com/b/pkB6fc0p
+
 Referências:
 
  - https://dotnet.microsoft.com/learn/web/aspnet-architecture
