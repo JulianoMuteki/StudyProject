@@ -4,7 +4,9 @@ namespace StudyProject.Domain.Common
 {
  public abstract class EntityBase
     {
-        public Guid Id { get; protected set; }
+        public Guid ID { get; protected set; }
+        public DateTime CreationDate { get; protected set; }
+        public DateTime DateModified { get; protected set; }
 
         public override bool Equals(object obj)
         {
@@ -13,7 +15,7 @@ namespace StudyProject.Domain.Common
             if (ReferenceEquals(this, compareTo)) return true;
             if (ReferenceEquals(null, compareTo)) return false;
 
-            return Id.Equals(compareTo.Id);
+            return ID.Equals(compareTo.ID);
         }
 
         public static bool operator ==(EntityBase a, EntityBase b)
@@ -34,12 +36,12 @@ namespace StudyProject.Domain.Common
 
         public override int GetHashCode()
         {
-            return (GetType().GetHashCode() * 907) + Id.GetHashCode();
+            return (GetType().GetHashCode() * 907) + ID.GetHashCode();
         }
 
         public override string ToString()
         {
-            return GetType().Name + " [Id=" + Id + "]";
+            return GetType().Name + " [Id=" + ID + "]";
         }
     }
 }

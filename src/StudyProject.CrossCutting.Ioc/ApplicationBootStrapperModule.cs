@@ -8,7 +8,7 @@ namespace StudyProject.CrossCutting.Ioc
     {
         public static void RegisterServices(IServiceCollection services)
         {
-          
+            //services.AddScoped<IProductApplicationService, ProductApplicationService>();
             services.AddScoped<IClientApplicationService, ClientApplicationService>();
         }
     }

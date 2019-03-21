@@ -73,7 +73,6 @@ namespace StudyProject.UI.Web
         {
             // Adding dependencies from another layers (isolated from Presentation)
             InfraBootStrapperModule.RegisterServices(services);
-            RepositoryBootStrapperModule.RegisterServices(services);
             ApplicationBootStrapperModule.RegisterServices(services);
         }
     }

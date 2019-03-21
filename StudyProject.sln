@@ -23,11 +23,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudyProject.Application", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudyProject.Infra.Repository", "src\StudyProject.Infra.Data\StudyProject.Infra.Repository.csproj", "{1C931F65-F1F0-4FE0-84DC-01A5D6C07F63}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudyProject.UI.Web", "src\StudyProject.UI.Web\StudyProject.UI.Web.csproj", "{DFFACA93-33A6-4CEC-BD57-A904E8ACF13B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudyProject.UI.WebCore", "src\StudyProject.UI.Web\StudyProject.UI.WebCore.csproj", "{DFFACA93-33A6-4CEC-BD57-A904E8ACF13B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudyProject.Infra.Context", "src\StudyProject.Infra.Context\StudyProject.Infra.Context.csproj", "{DE406705-3CEE-41FB-9C1D-F37D388A6BAD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudyProject.Infra.Context", "src\StudyProject.Infra.Context\StudyProject.Infra.Context.csproj", "{DE406705-3CEE-41FB-9C1D-F37D388A6BAD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudyProject.CrossCutting.Ioc", "src\StudyProject.CrossCutting.Ioc\StudyProject.CrossCutting.Ioc.csproj", "{AC8BA59A-E0DD-47F6-87EE-B34ECAFE8BB7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudyProject.CrossCutting.Ioc", "src\StudyProject.CrossCutting.Ioc\StudyProject.CrossCutting.Ioc.csproj", "{AC8BA59A-E0DD-47F6-87EE-B34ECAFE8BB7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

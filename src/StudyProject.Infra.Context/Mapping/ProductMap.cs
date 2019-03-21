@@ -11,23 +11,28 @@ namespace StudyProject.Infra.Context.Mapping
     {
         public void Configure(EntityTypeBuilder<Product> builder)
         {
-            builder.HasKey(e => e.ProductID);
+                builder.ToTable("Products");
 
-            builder.Property(e => e.Name)
-          .IsRequired()
-          .HasMaxLength(250);
+                builder.HasKey(e => e.ID).HasName("ProductID");
 
-            builder.Property(e => e.Value)
-          .IsRequired();
+                builder.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(250);
 
-            builder.Property(e => e.Available)
-                .IsRequired();
+                builder.Property(e => e.CreationDate)
+                    .IsRequired();
 
-            builder.HasOne(d => d.Client)
-                .WithMany(p => p.Products)
-                .HasForeignKey(d => d.ProductID)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Clients_Products");
+                builder.Property(e => e.DateModified)
+                    .IsRequired();
+
+                builder.Property(e => e.Description)
+                    .IsRequired()
+                    .HasMaxLength(250);
+
+                builder.Property(e => e.Weight)
+                     .HasColumnType("float")
+                    .IsRequired();
+
+            }
         }
-    }
 }

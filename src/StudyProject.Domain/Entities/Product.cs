@@ -1,16 +1,21 @@
-﻿using System;
+﻿using StudyProject.Domain.Common;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace StudyProject.Domain.Entities
 {
-    public class Product
+    public class Product: EntityBase
     {
-        public int ProductID { get; set; }
         public string Name { get; set; }
-        public decimal Value { get; set; }
-        public bool Available { get; set; }
-        public int ClientId { get; set; }
-        public virtual Client Client { get; set; }
+        public string Description { get; set; }
+        public float Weight { get; set; }
+
+        public ICollection<ClientProductValue> ClientsProductsValues { get; set; }
+
+        public Product()
+        {
+            this.ClientsProductsValues = new HashSet<ClientProductValue>();
+        }
     }
 }
