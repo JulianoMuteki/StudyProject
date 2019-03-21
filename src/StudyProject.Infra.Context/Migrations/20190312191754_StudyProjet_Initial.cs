@@ -25,17 +25,14 @@ namespace StudyProject.Infra.Context.Migrations
                         table.PrimaryKey("PK_Clients", x => x.ClientID);
                     });
 
-
             migrationBuilder.InsertData(
              table: "Clients",
              columns: new[] { "ClientID", "IsActive", "CreateDate", "Name", "LastName", "Email" },
              values: new object[] { 1, true, DateTime.Now, "Developer", ".NET", "developer@developer.com" });
-
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-
         }
     }
 }

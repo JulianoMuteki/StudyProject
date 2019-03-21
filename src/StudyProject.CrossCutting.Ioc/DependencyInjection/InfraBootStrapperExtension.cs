@@ -1,7 +1,7 @@
 ﻿namespace StudyProject.CrossCutting.Ioc.DependencyInjection
 {
     using Microsoft.Extensions.DependencyInjection;
-    using StudyProject.Domain.Interfaces;
+    using StudyProject.Domain.Interfaces.Base;
     using StudyProject.Infra.Repository;
     using StudyProject.Infra.Repository.Common;
 
@@ -16,11 +16,6 @@
         /// <param name="services">The services.</param>
         public static IServiceCollection RegisterInfraBootStrapper(this IServiceCollection services)
         {
-            // Infra - Data
-            //services.AddScoped<ICustomerRepository, CustomerRepository>();
-            //services.AddScoped<IUnitOfWork, UnitOfWork>();
-            //services.AddScoped<EquinoxContext>();
-
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddTransient<IUnitOfWork, UnitOfWork>();
 

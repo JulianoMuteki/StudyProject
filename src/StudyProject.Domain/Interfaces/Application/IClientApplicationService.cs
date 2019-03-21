@@ -7,6 +7,7 @@ namespace StudyProject.Domain.Interfaces.Application
     public interface IClientApplicationService
     {
         Task<IEnumerable<Client>> GetAllClient();
+
         ICollection<Client> GetAll();
     }
 }

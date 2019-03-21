@@ -2,7 +2,7 @@
 
 namespace StudyProject.Domain.Common
 {
- public abstract class EntityBase
+    public abstract class EntityBase
     {
         public Guid Id { get; protected set; }
 

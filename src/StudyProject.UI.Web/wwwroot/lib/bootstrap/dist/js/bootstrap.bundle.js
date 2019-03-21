@@ -127,7 +127,6 @@
      * --------------------------------------------------------------------------
      */
 
-
     var Util = {
       TRANSITION_END: 'bsTransitionEnd',
       getUID: function getUID(prefix) {
@@ -156,14 +155,12 @@
           return 0;
         } // Get transition-duration of the element
 
-
         var transitionDuration = $$$1(element).css('transition-duration');
         var floatTransitionDuration = parseFloat(transitionDuration); // Return 0 if element or transition duration is not found
 
         if (!floatTransitionDuration) {
           return 0;
         } // If multiple durations are defined, take the first
-
 
         transitionDuration = transitionDuration.split(',')[0];
         return parseFloat(transitionDuration) * MILLISECONDS_MULTIPLIER;
@@ -235,7 +232,6 @@
        * Class Definition
        * ------------------------------------------------------------------------
        */
-
     };
 
     var Alert =
@@ -244,7 +240,6 @@
       function Alert(element) {
         this._element = element;
       } // Getters
-
 
       var _proto = Alert.prototype;
 
@@ -269,7 +264,6 @@
         $$$1.removeData(this._element, DATA_KEY);
         this._element = null;
       }; // Private
-
 
       _proto._getRootElement = function _getRootElement(element) {
         var selector = Util.getSelectorFromElement(element);
@@ -313,7 +307,6 @@
         $$$1(element).detach().trigger(Event.CLOSED).remove();
       }; // Static
 
-
       Alert._jQueryInterface = function _jQueryInterface(config) {
         return this.each(function () {
           var $element = $$$1(this);
@@ -354,7 +347,6 @@
      * Data Api implementation
      * ------------------------------------------------------------------------
      */
-
 
     $$$1(document).on(Event.CLICK_DATA_API, Selector.DISMISS, Alert._handleDismiss(new Alert()));
     /**
@@ -413,7 +405,6 @@
        * Class Definition
        * ------------------------------------------------------------------------
        */
-
     };
 
     var Button =
@@ -422,7 +413,6 @@
       function Button(element) {
         this._element = element;
       } // Getters
-
 
       var _proto = Button.prototype;
 
@@ -476,7 +466,6 @@
         this._element = null;
       }; // Static
 
-
       Button._jQueryInterface = function _jQueryInterface(config) {
         return this.each(function () {
           var data = $$$1(this).data(DATA_KEY);
@@ -506,7 +495,6 @@
      * Data Api implementation
      * ------------------------------------------------------------------------
      */
-
 
     $$$1(document).on(Event.CLICK_DATA_API, Selector.DATA_TOGGLE_CARROT, function (event) {
       event.preventDefault();
@@ -616,7 +604,6 @@
        * Class Definition
        * ------------------------------------------------------------------------
        */
-
     };
 
     var Carousel =
@@ -635,7 +622,6 @@
 
         this._addEventListeners();
       } // Getters
-
 
       var _proto = Carousel.prototype;
 
@@ -730,7 +716,6 @@
         this._activeElement = null;
         this._indicatorsElement = null;
       }; // Private
-
 
       _proto._getConfig = function _getConfig(config) {
         config = _objectSpread({}, Default, config);
@@ -931,7 +916,6 @@
         }
       }; // Static
 
-
       Carousel._jQueryInterface = function _jQueryInterface(config) {
         return this.each(function () {
           var data = $$$1(this).data(DATA_KEY);
@@ -1014,7 +998,6 @@
      * ------------------------------------------------------------------------
      */
 
-
     $$$1(document).on(Event.CLICK_DATA_API, Selector.DATA_SLIDE, Carousel._dataApiClickHandler);
     $$$1(window).on(Event.LOAD_DATA_API, function () {
       var carousels = [].slice.call(document.querySelectorAll(Selector.DATA_RIDE));
@@ -1094,7 +1077,6 @@
        * Class Definition
        * ------------------------------------------------------------------------
        */
-
     };
 
     var Collapse =
@@ -1131,7 +1113,6 @@
           this.toggle();
         }
       } // Getters
-
 
       var _proto = Collapse.prototype;
 
@@ -1276,7 +1257,6 @@
         this._isTransitioning = null;
       }; // Private
 
-
       _proto._getConfig = function _getConfig(config) {
         config = _objectSpread({}, Default, config);
         config.toggle = Boolean(config.toggle); // Coerce string values
@@ -1322,7 +1302,6 @@
           }
         }
       }; // Static
-
 
       Collapse._getTargetFromElement = function _getTargetFromElement(element) {
         var selector = Util.getSelectorFromElement(element);
@@ -1374,7 +1353,6 @@
      * Data Api implementation
      * ------------------------------------------------------------------------
      */
-
 
     $$$1(document).on(Event.CLICK_DATA_API, Selector.DATA_TOGGLE, function (event) {
       // preventDefault only for <a> elements (which change the URL) not inside the collapsible element
@@ -1786,10 +1764,6 @@
       return Constructor;
     };
   }();
-
-
-
-
 
   var defineProperty = function (obj, key, value) {
     if (key in obj) {
@@ -3853,7 +3827,6 @@
     // We can't use class properties because they don't get listed in the
     // class prototype and break stuff like Sinon stubs
 
-
     createClass(Popper, [{
       key: 'update',
       value: function update$$1() {
@@ -3881,7 +3854,6 @@
        * @memberof Popper
        */
 
-
       /**
        * Collection of utilities useful when writing custom modifiers.
        * Starting from version 1.7, this method is available only if you
@@ -3898,7 +3870,6 @@
        * @member Utils
        * @memberof Popper
        */
-
     }]);
     return Popper;
   }();
@@ -3922,7 +3893,6 @@
    * @property {number} data.clientHeight
    * An ES6 getter that will return the height of the virtual reference element.
    */
-
 
   Popper.Utils = (typeof window !== 'undefined' ? window : global).PopperUtils;
   Popper.placements = placements;
@@ -4015,7 +3985,6 @@
        * Class Definition
        * ------------------------------------------------------------------------
        */
-
     };
 
     var Dropdown =
@@ -4030,7 +3999,6 @@
 
         this._addEventListeners();
       } // Getters
-
 
       var _proto = Dropdown.prototype;
 
@@ -4060,7 +4028,6 @@
           return;
         } // Disable totally Popper.js for Dropdown in Navbar
 
-
         if (!this._inNavbar) {
           /**
            * Check for Popper dependency
@@ -4084,7 +4051,6 @@
           // to allow the menu to "escape" the scroll parent's boundaries
           // https://github.com/twbs/bootstrap/issues/24251
 
-
           if (this._config.boundary !== 'scrollParent') {
             $$$1(parent).addClass(ClassName.POSITION_STATIC);
           }
@@ -4094,7 +4060,6 @@
         // empty mouseover listeners to the body's immediate children;
         // only needed because of broken event delegation on iOS
         // https://www.quirksmode.org/blog/archives/2014/02/mouse_event_bub.html
-
 
         if ('ontouchstart' in document.documentElement && $$$1(parent).closest(Selector.NAVBAR_NAV).length === 0) {
           $$$1(document.body).children().on('mouseover', null, $$$1.noop);
@@ -4128,7 +4093,6 @@
           this._popper.scheduleUpdate();
         }
       }; // Private
-
 
       _proto._addEventListeners = function _addEventListeners() {
         var _this = this;
@@ -4209,7 +4173,6 @@
               boundariesElement: this._config.boundary
             }
           } // Disable Popper.js if we have a static display
-
         };
 
         if (this._config.display === 'static') {
@@ -4220,7 +4183,6 @@
 
         return popperConfig;
       }; // Static
-
 
       Dropdown._jQueryInterface = function _jQueryInterface(config) {
         return this.each(function () {
@@ -4284,7 +4246,6 @@
           } // If this is a touch-enabled device we remove the extra
           // empty mouseover listeners we added for iOS support
 
-
           if ('ontouchstart' in document.documentElement) {
             $$$1(document.body).children().off('mouseover', null, $$$1.noop);
           }
@@ -4305,7 +4266,6 @@
 
         return parent || element.parentNode;
       }; // eslint-disable-next-line complexity
-
 
       Dropdown._dataApiKeydownHandler = function _dataApiKeydownHandler(event) {
         // If not input/textarea:
@@ -4389,7 +4349,6 @@
      * Data Api implementation
      * ------------------------------------------------------------------------
      */
-
 
     $$$1(document).on(Event.KEYDOWN_DATA_API, Selector.DATA_TOGGLE, Dropdown._dataApiKeydownHandler).on(Event.KEYDOWN_DATA_API, Selector.MENU, Dropdown._dataApiKeydownHandler).on(Event.CLICK_DATA_API + " " + Event.KEYUP_DATA_API, Dropdown._clearMenus).on(Event.CLICK_DATA_API, Selector.DATA_TOGGLE, function (event) {
       event.preventDefault();
@@ -4480,7 +4439,6 @@
        * Class Definition
        * ------------------------------------------------------------------------
        */
-
     };
 
     var Modal =
@@ -4496,7 +4454,6 @@
         this._ignoreBackdropClick = false;
         this._scrollbarWidth = 0;
       } // Getters
-
 
       var _proto = Modal.prototype;
 
@@ -4615,7 +4572,6 @@
       _proto.handleUpdate = function handleUpdate() {
         this._adjustDialog();
       }; // Private
-
 
       _proto._getConfig = function _getConfig(config) {
         config = _objectSpread({}, Default, config);
@@ -4810,7 +4766,6 @@
       // todo (fat): these should probably be refactored out of modal.js
       // ----------------------------------------------------------------------
 
-
       _proto._adjustDialog = function _adjustDialog() {
         var isModalOverflowing = this._element.scrollHeight > document.documentElement.clientHeight;
 
@@ -4894,7 +4849,6 @@
         return scrollbarWidth;
       }; // Static
 
-
       Modal._jQueryInterface = function _jQueryInterface(config, relatedTarget) {
         return this.each(function () {
           var data = $$$1(this).data(DATA_KEY);
@@ -4937,7 +4891,6 @@
      * Data Api implementation
      * ------------------------------------------------------------------------
      */
-
 
     $$$1(document).on(Event.CLICK_DATA_API, Selector.DATA_TOGGLE, function (event) {
       var _this10 = this;
@@ -5077,7 +5030,6 @@
        * Class Definition
        * ------------------------------------------------------------------------
        */
-
     };
 
     var Tooltip =
@@ -5092,7 +5044,6 @@
           throw new TypeError('Bootstrap tooltips require Popper.js (https://popper.js.org)');
         } // private
 
-
         this._isEnabled = true;
         this._timeout = 0;
         this._hoverState = '';
@@ -5105,7 +5056,6 @@
 
         this._setListeners();
       } // Getters
-
 
       var _proto = Tooltip.prototype;
 
@@ -5335,7 +5285,6 @@
         }
       }; // Protected
 
-
       _proto.isWithContent = function isWithContent() {
         return Boolean(this.getTitle());
       };
@@ -5381,7 +5330,6 @@
 
         return title;
       }; // Private
-
 
       _proto._getAttachment = function _getAttachment(placement) {
         return AttachmentMap[placement.toUpperCase()];
@@ -5574,7 +5522,6 @@
         this.config.animation = initConfigAnimation;
       }; // Static
 
-
       Tooltip._jQueryInterface = function _jQueryInterface(config) {
         return this.each(function () {
           var data = $$$1(this).data(DATA_KEY);
@@ -5645,7 +5592,6 @@
      * ------------------------------------------------------------------------
      */
 
-
     $$$1.fn[NAME] = Tooltip._jQueryInterface;
     $$$1.fn[NAME].Constructor = Tooltip;
 
@@ -5713,7 +5659,6 @@
        * Class Definition
        * ------------------------------------------------------------------------
        */
-
     };
 
     var Popover =
@@ -5756,7 +5701,6 @@
         $tip.removeClass(ClassName.FADE + " " + ClassName.SHOW);
       }; // Private
 
-
       _proto._getContent = function _getContent() {
         return this.element.getAttribute('data-content') || this.config.content;
       };
@@ -5769,7 +5713,6 @@
           $tip.removeClass(tabClass.join(''));
         }
       }; // Static
-
 
       Popover._jQueryInterface = function _jQueryInterface(config) {
         return this.each(function () {
@@ -5842,7 +5785,6 @@
      * ------------------------------------------------------------------------
      */
 
-
     $$$1.fn[NAME] = Popover._jQueryInterface;
     $$$1.fn[NAME].Constructor = Popover;
 
@@ -5912,7 +5854,6 @@
        * Class Definition
        * ------------------------------------------------------------------------
        */
-
     };
 
     var ScrollSpy =
@@ -5936,7 +5877,6 @@
 
         this._process();
       } // Getters
-
 
       var _proto = ScrollSpy.prototype;
 
@@ -5992,7 +5932,6 @@
         this._activeTarget = null;
         this._scrollHeight = null;
       }; // Private
-
 
       _proto._getConfig = function _getConfig(config) {
         config = _objectSpread({}, Default, typeof config === 'object' && config ? config : {});
@@ -6071,7 +6010,6 @@
 
         var queries = this._selector.split(','); // eslint-disable-next-line arrow-body-style
 
-
         queries = queries.map(function (selector) {
           return selector + "[data-target=\"" + target + "\"]," + (selector + "[href=\"" + target + "\"]");
         });
@@ -6099,7 +6037,6 @@
         var nodes = [].slice.call(document.querySelectorAll(this._selector));
         $$$1(nodes).filter(Selector.ACTIVE).removeClass(ClassName.ACTIVE);
       }; // Static
-
 
       ScrollSpy._jQueryInterface = function _jQueryInterface(config) {
         return this.each(function () {
@@ -6141,7 +6078,6 @@
      * Data Api implementation
      * ------------------------------------------------------------------------
      */
-
 
     $$$1(window).on(Event.LOAD_DATA_API, function () {
       var scrollSpys = [].slice.call(document.querySelectorAll(Selector.DATA_SPY));
@@ -6216,7 +6152,6 @@
        * Class Definition
        * ------------------------------------------------------------------------
        */
-
     };
 
     var Tab =
@@ -6225,7 +6160,6 @@
       function Tab(element) {
         this._element = element;
       } // Getters
-
 
       var _proto = Tab.prototype;
 
@@ -6294,7 +6228,6 @@
         this._element = null;
       }; // Private
 
-
       _proto._activate = function _activate(element, container, callback) {
         var _this2 = this;
 
@@ -6360,7 +6293,6 @@
         }
       }; // Static
 
-
       Tab._jQueryInterface = function _jQueryInterface(config) {
         return this.each(function () {
           var $this = $$$1(this);
@@ -6395,7 +6327,6 @@
      * Data Api implementation
      * ------------------------------------------------------------------------
      */
-
 
     $$$1(document).on(Event.CLICK_DATA_API, Selector.DATA_TOGGLE, function (event) {
       event.preventDefault();
@@ -6456,6 +6387,5 @@
   exports.Tooltip = Tooltip;
 
   Object.defineProperty(exports, '__esModule', { value: true });
-
 })));
 //# sourceMappingURL=bootstrap.bundle.js.map

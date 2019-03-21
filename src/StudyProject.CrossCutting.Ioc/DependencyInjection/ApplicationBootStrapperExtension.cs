@@ -2,7 +2,7 @@
 {
     using Microsoft.Extensions.DependencyInjection;
     using StudyProject.Application;
-    using StudyProject.Domain.Services;
+    using StudyProject.Domain.Interfaces.Application;
 
     /// <summary>
     /// ApplicationBootStrapperModule
