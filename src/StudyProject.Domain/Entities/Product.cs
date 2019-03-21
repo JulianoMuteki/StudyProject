@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace StudyProject.Domain.Entities
+﻿namespace StudyProject.Domain.Entities
 {
     public class Product
     {

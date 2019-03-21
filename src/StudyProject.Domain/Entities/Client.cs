@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace StudyProject.Domain.Entities
 {
@@ -18,7 +17,6 @@ namespace StudyProject.Domain.Entities
         public bool GetSpecialClient(Client client)
         {
             return client.IsActive && DateTime.Now.Year - client.CreateDate.Year >= 5;
-               
         }
     }
 }

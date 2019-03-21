@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using StudyProject.Domain.Interfaces;
+using StudyProject.Domain.Interfaces.Base;
 using StudyProject.Infra.Context;
 using System;
 using System.Collections.Generic;
@@ -179,7 +180,7 @@ namespace StudyProject.Infra.Repository.Common
         public bool Exist(Expression<Func<T, bool>> predicate)
         {
             var exist = _context.Set<T>().Where(predicate);
-            return exist.Any() ? true : false;
+            return exist.Any();
         }
     }
 }

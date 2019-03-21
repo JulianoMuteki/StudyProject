@@ -1,7 +1,7 @@
 ﻿namespace StudyProject.CrossCutting.Ioc.DependencyInjection
 {
     using Microsoft.Extensions.DependencyInjection;
-    using StudyProject.Domain.Interfaces;
+    using StudyProject.Domain.Interfaces.Base;
     using StudyProject.Infra.Repository;
     using StudyProject.Infra.Repository.Common;
 

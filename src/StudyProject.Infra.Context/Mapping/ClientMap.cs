@@ -1,6 +1,4 @@
-﻿
-
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using StudyProject.Domain.Entities;
 
@@ -56,7 +54,6 @@ namespace StudyProject.Infra.Context.Mapping
             //    .WithMany(p => p.Products)
             //    .HasForeignKey(d => d.SupplierId)
             //    .HasConstraintName("FK_Products_Suppliers");
-
         }
     }
 }
