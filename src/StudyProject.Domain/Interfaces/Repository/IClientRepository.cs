@@ -3,7 +3,7 @@ using StudyProject.Domain.Interfaces.Base;
 
 namespace StudyProject.Domain.Interfaces.Repository
 {
-    public interface IClientRepository: IGenericRepository<Client>
+    public interface IClientRepository : IGenericRepository<Client>
     {
     }
 }

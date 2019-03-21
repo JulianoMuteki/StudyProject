@@ -1,7 +1,6 @@
 ﻿using StudyProject.Domain.Common;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace StudyProject.Domain.Entities
 {

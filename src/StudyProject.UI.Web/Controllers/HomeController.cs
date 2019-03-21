@@ -1,7 +1,7 @@
-﻿using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using StudyProject.Domain.Interfaces.Application;
 using StudyProject.UI.Web.Models;
+using System.Diagnostics;
 
 namespace StudyProject.UI.Web.Controllers
 {

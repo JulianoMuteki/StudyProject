@@ -1,21 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using StudyProject.CrossCutting.Ioc;
-using AutoMapper;
-using StudyProject.Infra.Context;
-using Microsoft.EntityFrameworkCore;
-
-namespace StudyProject.UI.Web
+﻿namespace StudyProject.UI.Web
 {
+    using AutoMapper;
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using StudyProject.CrossCutting.Ioc.DependencyInjection;
+    using StudyProject.Infra.Context;
+
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -40,7 +35,9 @@ namespace StudyProject.UI.Web
             services.AddAutoMapper();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            RegisterServices(services);
+            services.RegisterBootStrapper();
+            services.RegisterInfraBootStrapper();
+            services.RegisterApplicationBootStrapper();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,7 +49,7 @@ namespace StudyProject.UI.Web
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler(@"/Home/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
@@ -67,13 +64,6 @@ namespace StudyProject.UI.Web
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-        }
-
-        private static void RegisterServices(IServiceCollection services)
-        {
-            // Adding dependencies from another layers (isolated from Presentation)
-            InfraBootStrapperModule.RegisterServices(services);
-            ApplicationBootStrapperModule.RegisterServices(services);
         }
     }
 }

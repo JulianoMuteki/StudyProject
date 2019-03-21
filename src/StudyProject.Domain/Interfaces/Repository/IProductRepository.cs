@@ -5,6 +5,5 @@ namespace StudyProject.Domain.Interfaces.Repository
 {
     public interface IProductRepository : IGenericRepository<Product>
     {
-
     }
 }

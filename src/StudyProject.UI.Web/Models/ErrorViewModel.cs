@@ -1,5 +1,3 @@
-using System;
-
 namespace StudyProject.UI.Web.Models
 {
     public class ErrorViewModel

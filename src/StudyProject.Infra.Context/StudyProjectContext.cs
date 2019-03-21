@@ -1,9 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using StudyProject.Domain.Entities;
 using StudyProject.Infra.Context.Mapping;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace StudyProject.Infra.Context
 {
@@ -14,13 +11,11 @@ namespace StudyProject.Infra.Context
 
         public StudyProjectContext()
         {
-
         }
 
         public StudyProjectContext(DbContextOptions<StudyProjectContext> options)
             : base(options)
         {
-
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
