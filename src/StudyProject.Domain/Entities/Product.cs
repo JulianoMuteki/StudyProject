@@ -15,6 +15,9 @@ namespace StudyProject.Domain.Entities
 
         public Product()
         {
+            this.ID = Guid.NewGuid();
+            this.DateModified = DateTime.Now;
+            this.CreationDate = DateTime.Now;
             this.ClientsProductsValues = new HashSet<ClientProductValue>();
         }
     }
