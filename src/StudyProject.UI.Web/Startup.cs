@@ -35,7 +35,6 @@
             services.AddAutoMapper();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            services.RegisterBootStrapper();
             services.RegisterInfraBootStrapper();
             services.RegisterApplicationBootStrapper();
         }
