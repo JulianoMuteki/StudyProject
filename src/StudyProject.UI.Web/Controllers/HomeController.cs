@@ -16,7 +16,7 @@ namespace StudyProject.UI.Web.Controllers
 
         public IActionResult Index()
         {
-           // var clients = _userService.GetAll();
+            var clients = _userService.GetAll();
 
             return View();
         }
