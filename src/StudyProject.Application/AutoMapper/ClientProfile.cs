@@ -9,6 +9,7 @@ namespace StudyProject.Application.AutoMapper
         public ClientProfile()
         {
             CreateMap<Client, ClientVM>();
+            CreateMap<ClientVM, Client>();
         }
     }
 }

@@ -10,7 +10,7 @@
     using Microsoft.Extensions.DependencyInjection;
     using StudyProject.CrossCutting.Ioc.DependencyInjection;
     using StudyProject.Infra.Context;
-
+    using StudyProject.UI.WebCore.AutoMapper;
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -32,10 +32,9 @@
 
             services.AddDbContext<StudyProjectContext>(item => item.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddAutoMapper();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            services.RegisterBootStrapper();
+            services.AddAutoMapperSetup();
             services.RegisterInfraBootStrapper();
             services.RegisterApplicationBootStrapper();
         }

@@ -8,6 +8,8 @@ namespace StudyProject.Infra.Context
     {
         //public DbSet<Blog> Blogs { get; set; }
         public DbSet<Client> Clients { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<ClientProductValue> ClientsProducts { get; set; }
 
         public StudyProjectContext()
         {
@@ -29,27 +31,11 @@ namespace StudyProject.Infra.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //https://stackoverflow.com/questions/37493095/entity-framework-core-rc2-table-name-pluralization
-            //modelBuilder.RemovePluralizingTableNameConvention();
-
             modelBuilder.ApplyConfiguration(new ClientMap());
+            modelBuilder.ApplyConfiguration(new ProductMap());
+            modelBuilder.ApplyConfiguration(new ClientProductMap());
 
             base.OnModelCreating(modelBuilder);
-
-            //https://medium.com/agilix/entity-framework-core-enums-ee0f8f4063f2
-            //https://medium.com/@kamgrzybek/domain-model-encapsulation-and-pi-with-entity-framework-2-2-f4a52e892ff5
-            //http://www.kamilgrzybek.com/design/domain-model-encapsulation-and-pi-with-entity-framework-2-2/
-            //modelBuilder.Entity<Blog>(entity =>
-            //{
-            //    entity.Property(e => e.Url).IsRequired();
-            //});
-
-            //modelBuilder.Entity<Post>(entity =>
-            //{
-            //    entity.HasOne(d => d.Blog)
-            //        .WithMany(p => p.Post)
-            //        .HasForeignKey(d => d.BlogId);
-            //});
         }
     }
 }

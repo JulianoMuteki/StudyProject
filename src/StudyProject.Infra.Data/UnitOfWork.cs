@@ -1,5 +1,7 @@
 ﻿using StudyProject.Domain.Interfaces.Base;
+using StudyProject.Domain.Interfaces.Repository;
 using StudyProject.Infra.Context;
+using StudyProject.Infra.Data.Repositories;
 using StudyProject.Infra.Repository.Common;
 using System;
 using System.Collections.Generic;
@@ -34,6 +36,39 @@ namespace StudyProject.Infra.Repository
             IGenericRepository<T> repo = new GenericRepository<T>(_dbContext);
             Repositories.Add(typeof(T), repo);
             return repo;
+        }
+
+        private readonly Dictionary<Type, object> _repositoriesCustom = new Dictionary<Type, object>();
+
+        public Dictionary<Type, object> RepositoriesCustom
+        {
+            get { return _repositoriesCustom; }
+            set { RepositoriesCustom = value; }
+        }
+
+        public T RepositoryCustom<T>() where T : class
+        {
+            if (!RepositoriesCustom.Keys.Contains(typeof(T)))
+            {
+                CreateReository<T>();
+            }
+
+            var obj = RepositoriesCustom[typeof(T)] as T;
+            return obj;
+        }
+
+        private void CreateReository<T>() where T : class
+        {
+            if (typeof(IClientRepository).Equals((typeof(T))) && !RepositoriesCustom.Keys.Contains(typeof(T)))
+            {
+                IClientRepository repository = new ClientRepository(_dbContext);
+                RepositoriesCustom.Add(typeof(T), repository);
+            }
+            else if (typeof(IProductRepository).Equals((typeof(T))) && !RepositoriesCustom.Keys.Contains(typeof(T)))
+            {
+                IProductRepository repository = new ProductRepository(_dbContext);
+                RepositoriesCustom.Add(typeof(T), repository);
+            }
         }
 
         public async Task<int> Commit()
