@@ -12,6 +12,7 @@ https://trello.com/b/pkB6fc0p
 
 Referências:
 
+ - https://github.com/ColorlibHQ/AdminLTE 
  - https://dotnet.microsoft.com/learn/web/aspnet-architecture
  - https://docs.microsoft.com/pt-br/ef/core/
  - https://github.com/thiagolunardi/MvcMusicStoreDDD
