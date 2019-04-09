@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using StudyProject.Application.Identity.ManageViewModels;
 using StudyProject.Infra.Identity.Models;
 using StudyProject.UI.WebCore.Extensions;

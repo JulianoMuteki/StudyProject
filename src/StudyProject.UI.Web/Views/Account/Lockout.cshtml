@@ -1,8 +1,8 @@
-﻿
-@{
-    ViewData["Title"] = "Lockout";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+﻿@{
+    ViewData["Title"] = "Locked out";
 }
 
-<h2>Lockout</h2>
-
+<header>
+    <h2 class="text-danger">@ViewData["Title"]</h2>
+    <p class="text-danger">This account has been locked out, please try again later.</p>
+</header>
