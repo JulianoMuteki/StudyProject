@@ -6747,7 +6747,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\StudyProject.CrossCutting.Ioc\StudyProject.CrossCutting.Ioc.csproj" />
-    <ProjectReference Include="..\StudyProject.Infra.Identity\StudyProject.Infra.Identity.csproj" />
   </ItemGroup>
 
 

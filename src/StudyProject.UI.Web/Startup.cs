@@ -1,6 +1,5 @@
 ﻿namespace StudyProject.UI.Web
 {
-    using AutoMapper;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
@@ -12,7 +11,7 @@
     using StudyProject.Application.Services;
     using StudyProject.CrossCutting.Ioc.DependencyInjection;
     using StudyProject.Infra.Context;
-    using StudyProject.Infra.Identity.Models;
+    using StudyProject.Infra.Context.Identity;
     using StudyProject.UI.WebCore.AutoMapper;
     using System;
 

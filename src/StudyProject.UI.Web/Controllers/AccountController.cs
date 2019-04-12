@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
@@ -10,7 +8,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using StudyProject.Application.Identity.AccountViewModels;
-using StudyProject.Infra.Identity.Models;
+using StudyProject.Infra.Context.Identity;
 using StudyProject.UI.WebCore.Extensions;
 
 namespace StudyProject.UI.WebCore.Controllers

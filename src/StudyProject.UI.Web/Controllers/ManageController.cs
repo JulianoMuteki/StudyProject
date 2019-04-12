@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
@@ -10,9 +9,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using StudyProject.Application.Identity.ManageViewModels;
-using StudyProject.Infra.Identity.Models;
+using StudyProject.Infra.Context.Identity;
 using StudyProject.UI.WebCore.Extensions;
 
 namespace StudyProject.UI.WebCore.Controllers
