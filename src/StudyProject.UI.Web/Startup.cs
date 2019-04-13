@@ -8,7 +8,6 @@
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-    using StudyProject.Application.Services;
     using StudyProject.CrossCutting.Ioc.DependencyInjection;
     using StudyProject.Infra.Context;
     using StudyProject.Infra.Context.Identity;
@@ -72,7 +71,6 @@
             });
 
             // Add application services.
-            services.AddTransient<IEmailSender, EmailSender>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddAutoMapperSetup();
@@ -86,7 +84,7 @@
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-              //  app.UseBrowserLink();
+                app.UseBrowserLink();
                 app.UseDatabaseErrorPage();
             }
             else

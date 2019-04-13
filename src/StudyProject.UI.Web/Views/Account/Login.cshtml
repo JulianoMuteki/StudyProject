@@ -10,6 +10,7 @@
 
 @{
     ViewData["Title"] = "Log in";
+    Layout = "_Layout";
 }
 
 <h2>@ViewData["Title"]</h2>
@@ -85,6 +86,5 @@
     </div>
 </div>
 
-@section Scripts {
+
     @await Html.PartialAsync("_ValidationScriptsPartial")
-}
