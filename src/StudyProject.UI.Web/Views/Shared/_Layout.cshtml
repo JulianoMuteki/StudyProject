@@ -45,7 +45,7 @@
                                 <!-- The user image in the navbar-->
                                 <img src="~/dist/img/user1.jpg" class="user-image" alt="User Image">
                                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                                <span class="hidden-xs">Juliano Pestili</span>
+                                <span class="hidden-xs">Hello @User.Identity.Name!</span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- The user image in the menu -->
@@ -71,7 +71,9 @@
                                         <a href="#" class="btn btn-default btn-flat">Profile</a>
                                     </div>
                                     <div class="pull-right">
-                                        <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                        <form method="post" asp-controller="Account" asp-action="Logout">
+                                            <input class="btn btn-default btn-flat" type="submit" value="Logout" />
+                                        </form>
                                     </div>
                                 </li>
                             </ul>

@@ -7,7 +7,7 @@
 }
 
 <h4>@ViewData["Title"]</h4>
-@Html.Partial("_StatusMessage", Model.StatusMessage)
+<partial name="_StatusMessage.cshtml" />
 <div class="row">
     <div class="col-md-6">
         <form method="post">
@@ -41,7 +41,3 @@
         </form>
     </div>
 </div>
-
-@section Scripts {
-    @await Html.PartialAsync("_ValidationScriptsPartial")
-}
