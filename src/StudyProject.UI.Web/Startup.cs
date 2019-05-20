@@ -34,9 +34,11 @@
             });
 
             services.AddDbContext<StudyProjectContext>(item => item.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddIdentity<ApplicationUser, IdentityRole>()
+
+            services.AddIdentity<ApplicationUser, IdentityRole<Guid>>()
                                 .AddEntityFrameworkStores<StudyProjectContext>()
                                 .AddDefaultTokenProviders();
+
             services.Configure<IdentityOptions>(options =>
             {
                 // Password settings
@@ -64,8 +66,11 @@
                 // If the LoginPath isn't set, ASP.NET Core defaults 
                 // the path to /Account/Login.
                 options.LoginPath = "/Account/Login";
+                options.LogoutPath = "/Account/Logout";
+                options.ReturnUrlParameter = "ReturnUrl";
                 // If the AccessDeniedPath isn't set, ASP.NET Core defaults 
                 // the path to /Account/AccessDenied.
+                // Error 403
                 options.AccessDeniedPath = "/Account/AccessDenied";
                 options.SlidingExpiration = true;
             });

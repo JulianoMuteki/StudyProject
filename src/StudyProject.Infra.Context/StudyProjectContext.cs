@@ -1,12 +1,14 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using StudyProject.Domain.Entities;
 using StudyProject.Infra.Context.Identity;
 using StudyProject.Infra.Context.Mapping;
+using System;
 
 namespace StudyProject.Infra.Context
 {
-    public class StudyProjectContext : IdentityDbContext<ApplicationUser>
+    public class StudyProjectContext : IdentityDbContext<ApplicationUser, IdentityRole<Guid>, Guid>
     {
         //public DbSet<Blog> Blogs { get; set; }
         public DbSet<Client> Clients { get; set; }

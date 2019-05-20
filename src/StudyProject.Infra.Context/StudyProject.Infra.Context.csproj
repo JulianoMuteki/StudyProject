@@ -15,6 +15,10 @@
 
   <ItemGroup>
     <Compile Remove="Migrations\20190312191754_StudyProjet_Initial.cs" />
+    <Compile Remove="Migrations\20190330142316_InitialCreate.cs" />
+    <Compile Remove="Migrations\20190412190808_Identity_Init.cs" />
+    <Compile Remove="Migrations\20190520094147_InitialCreate.cs" />
+    <Compile Remove="Migrations\20190520095518_InitialCreate.cs" />
   </ItemGroup>
 
   <ItemGroup>
