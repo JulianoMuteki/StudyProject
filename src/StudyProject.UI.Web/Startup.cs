@@ -76,7 +76,9 @@
             });
 
             // Add application services.
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc().AddRazorPagesOptions(options => {
+                options.Conventions.AddAreaPageRoute("Identity", "/Account/Login", "/Login");
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddAutoMapperSetup();
             services.RegisterInfraBootStrapper();
@@ -106,6 +108,10 @@
 
             app.UseMvc(routes =>
             {
+                routes.MapRoute(
+                   name: "Identity",
+                   template: "{controller=Account}/{action=Login}");
+
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");

@@ -13,8 +13,6 @@ using StudyProject.UI.WebCore.Extensions;
 
 namespace StudyProject.UI.WebCore.Controllers
 {
-    [Authorize]
-    [Route("[controller]/[action]")]
     public class AccountController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -38,7 +36,6 @@ namespace StudyProject.UI.WebCore.Controllers
         public string ErrorMessage { get; set; }
 
         [HttpGet]
-        [AllowAnonymous]
         public async Task<IActionResult> Login(string returnUrl = null)
         {
             // Clear the existing external cookie to ensure a clean login process
@@ -49,7 +46,6 @@ namespace StudyProject.UI.WebCore.Controllers
         }
 
         [HttpPost]
-        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
         {
