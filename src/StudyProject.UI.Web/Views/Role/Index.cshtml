@@ -4,49 +4,45 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Home
+        Security 
+        <small>and identity</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Clientes</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Role</a></li>
+        <li><a href="#">Index</a></li>
     </ol>
 </section>
+
 <!-- Main content -->
 <section class="content">
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="box">
-                <div class="box-header">
-                   
-                    <div class="pull-left">
-                        <a asp-action="Create" class="btn btn-block btn-primary">Create Rule</a>                    
-                        <a asp-action="AssignRoleToUser" class="btn btn-block btn-primary">AssignRoleToUser</a>
-                    </div>
-                </div>
-                <!-- /.box-header -->
-                <div class="box-body">
-                    <table id="example1" class="table table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <th>Role name</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model)
-                            {
-                                <tr>
-                                    <td>@item.Name</td>
-                                </tr>
-                            }
-                    </table>
-                </div>
-                <!-- /.box-body -->
-            </div>
-            <!-- /.box -->
+
+    <!-- Default box -->
+    <div class="box">
+        <div class="box-header with-border">
+            <h3 class="box-title">Roles</h3>
         </div>
-        <!-- /.col -->
+        <div class="box-body">
+            <table id="example1" class="table table-bordered table-striped">       
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Name</td>
+                        </tr>
+                    }
+            </table>
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer">
+            <a asp-action="Create" class="btn btn-default">Create Rule</a>
+            <a asp-action="AssignRoleToUser" class="btn btn-default">Assign Role To User</a>
+        </div>
+        <!-- /.box-footer-->
     </div>
-    <!-- /.row -->
+    <!-- /.box -->
+
 </section>
+<!-- /.content -->

@@ -36,6 +36,7 @@ namespace StudyProject.UI.WebCore.Controllers
         public string ErrorMessage { get; set; }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> Login(string returnUrl = null)
         {
             // Clear the existing external cookie to ensure a clean login process
@@ -47,6 +48,7 @@ namespace StudyProject.UI.WebCore.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AllowAnonymous]
         public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
@@ -191,14 +193,12 @@ namespace StudyProject.UI.WebCore.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]
         public IActionResult Lockout()
         {
             return View();
         }
 
         [HttpGet]
-        [AllowAnonymous]
         public IActionResult Register(string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
@@ -206,7 +206,6 @@ namespace StudyProject.UI.WebCore.Controllers
         }
 
         [HttpPost]
-        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
         {
