@@ -8,7 +8,7 @@ using System;
 
 namespace StudyProject.Infra.Context
 {
-    public class StudyProjectContext : IdentityDbContext<ApplicationUser, IdentityRole<Guid>, Guid>
+    public class StudyProjectContext : IdentityDbContext<ApplicationUser, ApplicationRole, Guid>
     {
         //public DbSet<Blog> Blogs { get; set; }
         public DbSet<Client> Clients { get; set; }

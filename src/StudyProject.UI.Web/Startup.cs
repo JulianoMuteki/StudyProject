@@ -35,7 +35,7 @@
 
             services.AddDbContext<StudyProjectContext>(item => item.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<ApplicationUser, IdentityRole<Guid>>()
+            services.AddIdentity<ApplicationUser, ApplicationRole>()
                                 .AddEntityFrameworkStores<StudyProjectContext>()
                                 .AddDefaultTokenProviders();
 
