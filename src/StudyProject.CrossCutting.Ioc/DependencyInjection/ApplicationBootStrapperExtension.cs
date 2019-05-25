@@ -2,6 +2,7 @@
 {
     using Microsoft.Extensions.DependencyInjection;
     using StudyProject.Application;
+    using StudyProject.Application.Services;
     using StudyProject.Domain.Interfaces.Application;
 
     /// <summary>
@@ -16,7 +17,7 @@
         public static IServiceCollection RegisterApplicationBootStrapper(this IServiceCollection services)
         {
             services.AddScoped<IClientApplicationService, ClientApplicationService>();
-
+            services.AddTransient<ICustomEmailSender, CustomEmailSender>();
             return services;
         }
     }
