@@ -8,7 +8,9 @@ using System;
 
 namespace StudyProject.Infra.Context
 {
-    public class StudyProjectContext : IdentityDbContext<ApplicationUser, ApplicationRole, Guid>
+    public class StudyProjectContext : IdentityDbContext<ApplicationUser, ApplicationRole, Guid, ApplicationUserClaim,
+                                                        ApplicationUserRole, IdentityUserLogin<Guid>,
+                                                        ApplicationRoleClaim, IdentityUserToken<Guid>>
     {
         //public DbSet<Blog> Blogs { get; set; }
         public DbSet<Client> Clients { get; set; }
@@ -40,6 +42,43 @@ namespace StudyProject.Infra.Context
             modelBuilder.ApplyConfiguration(new ClientProductMap());
 
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<ApplicationUserRole>(userRole =>
+            {
+                userRole.HasKey(ur => new { ur.UserId, ur.RoleId });
+
+                userRole.HasOne(ur => ur.Role)
+                    .WithMany(r => r.UserRoles)
+                    .HasForeignKey(ur => ur.RoleId)
+                    .IsRequired();
+
+                userRole.HasOne(ur => ur.User)
+                    .WithMany(r => r.UserRoles)
+                    .HasForeignKey(ur => ur.UserId)
+                    .IsRequired();
+            });
+
+
+            modelBuilder.Entity<ApplicationUserClaim>(userClaim =>
+            {
+                userClaim.HasKey(ur => ur.Id);
+
+                userClaim.HasOne(ur => ur.User)
+                    .WithMany(r => r.UserClaims)
+                    .HasForeignKey(ur => ur.UserId)
+                    .IsRequired();
+            });
+
+
+            modelBuilder.Entity<ApplicationRoleClaim>(roleClaim =>
+            {
+                roleClaim.HasKey(ur => ur.Id);
+
+                roleClaim.HasOne(ur => ur.Role)
+                    .WithMany(r => r.RoleClaims)
+                    .HasForeignKey(ur => ur.RoleId)
+                    .IsRequired();
+            });
         }
     }
 }

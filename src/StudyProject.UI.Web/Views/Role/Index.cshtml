@@ -1,4 +1,4 @@
-﻿@model IEnumerable<StudyProject.Infra.Context.Identity.ApplicationRole>
+﻿@model StudyProject.UI.WebCore.Models.RoleViewModel
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -25,19 +25,32 @@
             <h3 class="box-title">Roles</h3>
         </div>
         <div class="box-body">
-            <table id="example1" class="table table-bordered table-striped">       
+            <table id="example1" class="table table-bordered table-striped">
                 <tbody>
-                    @foreach (var item in Model)
+                    @foreach (var item in Model.AllRoles)
                     {
                         <tr>
-                            <td>@item.Name</td>
+                            <td>@item.Value</td>
+                        </tr>
+                    }
+            </table>
+        </div>
+        <div class="box-header with-border">
+            <h3 class="box-title">Claims</h3>
+        </div>
+        <div class="box-body">
+            <table class="table table-bordered table-striped">
+                <tbody>
+                    @foreach (var item in Model.AllClaims)
+                    {
+                        <tr>
+                            <td>@item.Value</td>
                         </tr>
                     }
             </table>
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
-            <a asp-action="Create" class="btn btn-default">Create Rule</a>
             <a asp-action="AssignRoleToUser" class="btn btn-default">Assign Role To User</a>
         </div>
         <!-- /.box-footer-->

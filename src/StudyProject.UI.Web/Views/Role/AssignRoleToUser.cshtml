@@ -1,56 +1,267 @@
-﻿@model StudyProject.Application.Identity.RoleViewModel.RolesToUsersViewModel
+﻿@model StudyProject.UI.WebCore.Models.RoleViewModel
 
 @{
     ViewData["Title"] = "AssignRoleToUser";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<script>
+        $(function () {
+            $('.select2_option').select2({
+                allowClear: true
+              
+            });
+            
+            //<!-- BEGIN AspNetUserRoles -->
+            var slt2RolesToUser = "#slt2RolesToUser";
+            var ddlUserRoles = "#ddlUserRoles";
+
+            $("#btnRole").click(function () {
+                var selections = (JSON.stringify($(slt2RolesToUser).select2('data')));
+
+                $.ajax({
+                    url: '@Url.Content("~/Role/PostAjaxHandlerRoles")',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: { rolesJSON: selections, userID: $(ddlUserRoles).val() },
+                    "success": function (json) {
+                        if (!json.NotAuthorized) {
+                            alert("Complete");
+                        }
+                    }
+                });
+                event.preventDefault();
+            });
+
+
+            $(slt2RolesToUser).select2({
+                placeholder: "Select a roles",
+                allowClear: true
+            });
+
+            $(ddlUserRoles).change(function (event) {
+                $(slt2RolesToUser).val(null).trigger('change');
+                $(slt2RolesToUser).empty().trigger("change");
+
+                if ($(this).val() !== '0' && $(this).val() !== null) {
+                    var url = '@Url.Content("~/Role/GetAjaxHandlerRoles")'
+                    $.getJSON(url, { userID: $(this).val() }, function (data) {
+                        $.each(data, function (index, obj) {
+                            var newOption = new Option(obj.text, obj.value, false, obj.selected);
+                            $(slt2RolesToUser).append(newOption).trigger('change');
+                        });
+                    });
+                }
+            });
+            //<!-- END AspNetUserRoles -->
+
+            //<!-- BEGIN AspNetRoleClaims -->
+            var slt2ClaimsToRole = "#slt2ClaimsToRole";
+            var ddlRolesClaims = "#ddlRolesClaims";
+
+            $("#btnRoleClaim").click(function () {
+                var selections = (JSON.stringify($(slt2ClaimsToRole).select2('data')));
+
+                $.ajax({
+                    url: '@Url.Content("~/Role/PostAjaxHandlerClaimsToRole")',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: { claimsJSON: selections, roleID: $(ddlRolesClaims).val() },
+                    "success": function (json) {
+                        if (!json.NotAuthorized) {
+                            alert("Complete");
+                        }
+                    }
+                });
+                event.preventDefault();
+            });
+
+            $(slt2ClaimsToRole).select2({
+                placeholder: "Select a Claims",
+                allowClear: true
+            });
+
+            $(ddlRolesClaims).change(function (event) {
+                $(slt2ClaimsToRole).val(null).trigger('change');
+                $(slt2ClaimsToRole).empty().trigger("change");
+
+                if ($(this).val() !== '0' && $(this).val() !== null) {
+                    var url = '@Url.Content("~/Role/GetAjaxHandlerClaimsRoles")'
+                    $.getJSON(url, { roleID: $(this).val() }, function (data) {
+                        $.each(data, function (index, obj) {
+                            var newOption = new Option(obj.text, obj.value, false, obj.selected);
+                            $(slt2ClaimsToRole).append(newOption).trigger('change');
+                        });
+                    });
+                }
+            });
+            //<!-- END AspNetRoleClaims -->
+
+            //<!-- BEGIN AspNetUserClaims -->
+            var slt2ClaimsToUser = "#slt2ClaimsToUser";
+            var ddlUserClaims = "#ddlUserClaims";
+
+            $("#btnUserClaim").click(function () {
+                var selections = (JSON.stringify($(slt2ClaimsToUser).select2('data')));
+
+                $.ajax({
+                    url: '@Url.Content("~/Role/PostAjaxHandlerClaimsToUser")',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: { claimsJSON: selections, userID: $(ddlUserClaims).val() },
+                    "success": function (json) {
+                        if (!json.NotAuthorized) {
+                            alert('Complete');
+                        }
+                    }
+                });
+                event.preventDefault();
+            });
+
+
+            $(slt2ClaimsToUser).select2({
+                placeholder: "Select a Claims",
+                allowClear: true
+            });
+
+            $(ddlUserClaims).change(function (event) {
+                $(slt2ClaimsToUser).val(null).trigger('change');
+                $(slt2ClaimsToUser).empty().trigger("change");
+
+                if ($(this).val() !== '0' && $(this).val() !== null) {
+                    var url = '@Url.Content("~/Role/GetAjaxHandlerClaimsUsers")'
+                    $.getJSON(url, { userID: $(this).val() }, function (data) {
+                        $.each(data, function (index, obj) {
+                            var newOption = new Option(obj.text, obj.value, false, obj.selected);
+                            $(slt2ClaimsToUser).append(newOption).trigger('change');
+                        });
+                    });
+                }
+            });
+        })
+</script>
+
 <section class="content-header">
     <h1>
-        Security
+        Advanced Form Elements
+        <small>Preview</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Role</a></li>
-        <li class="active">Create</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Forms</a></li>
+        <li class="active">Advanced Elements</li>
     </ol>
 </section>
+
 <!-- Main content -->
 <section class="content">
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="box">
-                <div class="box-header">
-                    <h3 class="box-title">Manage Roles</h3>
-                </div>
-                <!-- /.box-header -->
-                <div class="box-body">
-                    <div class="col-md-4">
-                        <form method="post" role="form">
-                            <div class="box-body">
-                                <div class="form-group">
-                                    <label>Users</label>
-                                    <select name="UserSelected" asp-for="UserSelected" asp-items="@Model.AllUsers" class="form-control"> <option>Please select one</option></select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Roles</label>
-                                    <select name="RoleSelected" asp-for="RoleSelected" asp-items="@Model.AllRoles" class="form-control"> <option>Please select one</option></select>
-                                </div>
 
-                            </div>
-                            <!-- /.box-body -->
+    <!-- Policy permission AspNetUserRoles -->
+    <div class="box box-default">
+        <div class="box-header with-border">
+            <h3 class="box-title">Policy permission AspNetUserRoles</h3>
 
-                            <div class="box-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <!-- /.box-body -->
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
             </div>
-            <!-- /.box -->
         </div>
-        <!-- /.col -->
+        <!-- /.box-header -->
+        <div class="box-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Users</label>
+                        <select id="ddlUserRoles" class="form-control select2_option" style="width: 100%;" data-placeholder="Choose a user" tabindex="-1" name="UserSelected" asp-for="UserSelected" asp-items="@Model.AllUsers"><option value="0">Please select user</option></select>
+                    </div>
+                    <!-- /.form-group -->
+                    <div class="form-group">
+                        <label>Roles</label>
+                        <select id="slt2RolesToUser" data-placeholder="Policy role" class="form-control select2" tabindex="0" multiple="multiple" name="RoleSelected"> <option value="0">Please select roles</option></select>
+                    </div>
+                    <!-- /.form-group -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer">
+            <button id="btnRole" type="button" class="btn btn-primary">Submit</button>
+        </div>
     </div>
-    <!-- /.row -->
+    <!-- /.box -->
+    <!-- Policy permission AspNetRoleClaims -->
+    <div class="box box-default">
+        <div class="box-header with-border">
+            <h3 class="box-title">Policy permission AspNetRoleClaims</h3>
+
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+            </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Roles</label>
+                        <select id="ddlRolesClaims" class="form-control select2_option" style="width: 100%;" data-placeholder="Choose a role" tabindex="1" name="RoleSelected" asp-for="RoleSelected" asp-items="@Model.AllRoles"> <option value="0">Please select role</option></select>
+
+                    </div>
+                    <!-- /.form-group -->
+                    <div class="form-group">
+                        <label>Claims</label>
+                        <select id="slt2ClaimsToRole" style="width: 100%;" data-placeholder="Policy claim" class="form-control select2" tabindex="0" multiple="multiple" name="ClaimSelected"> <option value="0">Please select claims</option></select>
+                    </div>
+                    <!-- /.form-group -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer">
+            <button id="btnRoleClaim" type="button" class="btn btn-primary">Submit</button>
+        </div>
+    </div>
+    <!-- /.box -->
+    <!-- Policy permission AspNetUserClaims -->
+    <div class="box box-default">
+        <div class="box-header with-border">
+            <h3 class="box-title">Policy permission AspNetUserClaims</h3>
+
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+            </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Users</label>
+                        <select id="ddlUserClaims" class="form-control select2_option" style="width: 100%;" data-placeholder="Choose a user" tabindex="1" name="UserSelected" asp-for="UserSelected" asp-items="@Model.AllUsers"> <option value="0">Please select user</option></select>
+                    </div>
+                    <!-- /.form-group -->
+                    <div class="form-group">
+                        <label>Claims</label>
+                        <select id="slt2ClaimsToUser" data-placeholder="Policy claim" class="form-control select2" style="width: 100%;" tabindex="0" multiple="multiple" name="ClaimSelected"> <option value="0">Please select claims</option></select>
+
+                    </div>
+                    <!-- /.form-group -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer">
+            <button id="btnUserClaim" type="button" class="btn btn-primary">Submit</button>
+        </div>
+    </div>
+    <!-- /.box -->
 </section>
 
