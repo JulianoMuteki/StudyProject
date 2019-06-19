@@ -6,6 +6,11 @@
 }
 
 <script>
+    function JSONCustom(idslt2) {
+        var json = JSON.stringify($(idslt2).select2('data'), ['disabled', 'id', 'selected', 'text', 'title']);
+        return json;
+    }
+
         $(function () {
             $('.select2_option').select2({
                 allowClear: true
@@ -17,7 +22,7 @@
             var ddlUserRoles = "#ddlUserRoles";
 
             $("#btnRole").click(function () {
-                var selections = (JSON.stringify($(slt2RolesToUser).select2('data')));
+                var selections = JSONCustom(slt2RolesToUser);
 
                 $.ajax({
                     url: '@Url.Content("~/Role/PostAjaxHandlerRoles")',
@@ -60,7 +65,7 @@
             var ddlRolesClaims = "#ddlRolesClaims";
 
             $("#btnRoleClaim").click(function () {
-                var selections = (JSON.stringify($(slt2ClaimsToRole).select2('data')));
+                var selections = JSONCustom(slt2ClaimsToRole);
 
                 $.ajax({
                     url: '@Url.Content("~/Role/PostAjaxHandlerClaimsToRole")',
@@ -102,7 +107,7 @@
             var ddlUserClaims = "#ddlUserClaims";
 
             $("#btnUserClaim").click(function () {
-                var selections = (JSON.stringify($(slt2ClaimsToUser).select2('data')));
+                var selections = JSONCustom(slt2ClaimsToUser);
 
                 $.ajax({
                     url: '@Url.Content("~/Role/PostAjaxHandlerClaimsToUser")',
@@ -155,7 +160,6 @@
 
 <!-- Main content -->
 <section class="content">
-
     <!-- Policy permission AspNetUserRoles -->
     <div class="box box-default">
         <div class="box-header with-border">
