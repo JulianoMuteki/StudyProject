@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
-using System.Text;
 
 namespace StudyProject.Domain.Security
 {
@@ -24,14 +23,14 @@ namespace StudyProject.Domain.Security
             }
         }
 
-        public static IDictionary<CRUD, Claim> ListAllClaims
+        public static IDictionary<PERMISSIONS, Claim> ListAllClaims
         {
             get
             {
-                var claims = new Dictionary<CRUD, Claim>();
-                foreach (var permission in Enum.GetNames(typeof(CRUD)))
+                var claims = new Dictionary<PERMISSIONS, Claim>();
+                foreach (var permission in Enum.GetNames(typeof(PERMISSIONS)))
                 {
-                    var result = (CRUD)Enum.Parse(typeof(CRUD), permission);
+                    var result = (PERMISSIONS)Enum.Parse(typeof(PERMISSIONS), permission);
                     claims.Add(result, new Claim(CustomClaimTypes.DefaultPermission, $"{NAME}.{permission.ToLower()}"));
                 }
 
@@ -42,7 +41,7 @@ namespace StudyProject.Domain.Security
         public static IList<string> ListClaimsAuthorizations { get { return ListAllClaims.Select(x => x.Value.Value).ToList(); } }
     }
 
-    public enum CRUD
+    public enum PERMISSIONS
     {
         Create,
         Read,

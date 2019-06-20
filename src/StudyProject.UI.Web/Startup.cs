@@ -9,6 +9,7 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using StudyProject.CrossCutting.Ioc.DependencyInjection;
+    using StudyProject.Domain.Security;
     using StudyProject.Infra.Context;
     using StudyProject.Infra.Context.Identity;
     using StudyProject.UI.WebCore.AutoMapper;
@@ -74,7 +75,13 @@
                 options.AccessDeniedPath = "/Account/AccessDenied";
                 options.SlidingExpiration = true;
             });
-
+            services.AddAuthorization(options =>
+            {
+                foreach (var item in PolicyTypes.ListAllClaims)
+                {
+                    options.AddPolicy(item.Value.Value, policy => { policy.RequireClaim(CustomClaimTypes.DefaultPermission, item.Value.Value); });
+                }
+            });
             // Add application services.
             services.AddMvc().AddRazorPagesOptions(options => {
                 options.Conventions.AddAreaPageRoute("Identity", "/Account/Login", "/Login");
@@ -91,7 +98,7 @@
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseBrowserLink();
+               // app.UseBrowserLink();
                 app.UseDatabaseErrorPage();
             }
             else
