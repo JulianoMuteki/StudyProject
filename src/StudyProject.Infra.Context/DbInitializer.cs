@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
+using StudyProject.Domain.Identity;
 using StudyProject.Domain.Security;
-using StudyProject.Infra.Context.Identity;
 using System;
 
 namespace StudyProject.Infra.Context

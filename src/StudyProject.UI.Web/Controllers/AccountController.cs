@@ -8,8 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using StudyProject.Application.Identity.AccountViewModels;
 using StudyProject.Application.Services;
-using StudyProject.Infra.Context.Identity;
-using StudyProject.UI.WebCore.Extensions;
+using StudyProject.Domain.Identity;
 
 namespace StudyProject.UI.WebCore.Controllers
 {

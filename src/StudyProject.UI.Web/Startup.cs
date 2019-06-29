@@ -9,9 +9,9 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using StudyProject.CrossCutting.Ioc.DependencyInjection;
+    using StudyProject.Domain.Identity;
     using StudyProject.Domain.Security;
     using StudyProject.Infra.Context;
-    using StudyProject.Infra.Context.Identity;
     using StudyProject.UI.WebCore.AutoMapper;
     using System;
 

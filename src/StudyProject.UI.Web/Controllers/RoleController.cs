@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using StudyProject.Domain.Identity;
 using StudyProject.Domain.Security;
-using StudyProject.Infra.Context.Identity;
 using StudyProject.UI.WebCore.Extensions;
 using StudyProject.UI.WebCore.Models;
 

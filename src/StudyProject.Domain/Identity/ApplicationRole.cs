@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace StudyProject.Infra.Context.Identity
+namespace StudyProject.Domain.Identity
 {
     public class ApplicationRole : IdentityRole<Guid>
     {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System;
 
-namespace StudyProject.Infra.Context.Identity
+namespace StudyProject.Domain.Identity
 {
     public class ApplicationUserRole : IdentityUserRole<Guid>
     {
