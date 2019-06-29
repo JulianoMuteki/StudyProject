@@ -10,7 +10,7 @@ using StudyProject.Infra.Context;
 namespace StudyProject.Infra.Context.Migrations
 {
     [DbContext(typeof(StudyProjectContext))]
-    [Migration("20190618203819_InitialCreate")]
+    [Migration("20190629094254_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,42 +21,11 @@ namespace StudyProject.Infra.Context.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
-                {
-                    b.Property<string>("LoginProvider");
-
-                    b.Property<string>("ProviderKey");
-
-                    b.Property<string>("ProviderDisplayName");
-
-                    b.Property<Guid>("UserId");
-
-                    b.HasKey("LoginProvider", "ProviderKey");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("AspNetUserLogins");
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
-                {
-                    b.Property<Guid>("UserId");
-
-                    b.Property<string>("LoginProvider");
-
-                    b.Property<string>("Name");
-
-                    b.Property<string>("Value");
-
-                    b.HasKey("UserId", "LoginProvider", "Name");
-
-                    b.ToTable("AspNetUserTokens");
-                });
-
             modelBuilder.Entity("StudyProject.Domain.Entities.Client", b =>
                 {
                     b.Property<Guid>("ID")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("ClientID");
 
                     b.Property<DateTime>("CreationDate");
 
@@ -99,7 +68,8 @@ namespace StudyProject.Infra.Context.Migrations
             modelBuilder.Entity("StudyProject.Domain.Entities.Product", b =>
                 {
                     b.Property<Guid>("ID")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("ProductID");
 
                     b.Property<DateTime>("CreationDate");
 
@@ -122,7 +92,7 @@ namespace StudyProject.Infra.Context.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("StudyProject.Infra.Context.Identity.ApplicationRole", b =>
+            modelBuilder.Entity("StudyProject.Domain.Identity.ApplicationRole", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
@@ -146,7 +116,7 @@ namespace StudyProject.Infra.Context.Migrations
                     b.ToTable("AspNetRoles");
                 });
 
-            modelBuilder.Entity("StudyProject.Infra.Context.Identity.ApplicationRoleClaim", b =>
+            modelBuilder.Entity("StudyProject.Domain.Identity.ApplicationRoleClaim", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -165,7 +135,7 @@ namespace StudyProject.Infra.Context.Migrations
                     b.ToTable("AspNetRoleClaims");
                 });
 
-            modelBuilder.Entity("StudyProject.Infra.Context.Identity.ApplicationUser", b =>
+            modelBuilder.Entity("StudyProject.Domain.Identity.ApplicationUser", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
@@ -220,7 +190,7 @@ namespace StudyProject.Infra.Context.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("StudyProject.Infra.Context.Identity.ApplicationUserClaim", b =>
+            modelBuilder.Entity("StudyProject.Domain.Identity.ApplicationUserClaim", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -239,7 +209,24 @@ namespace StudyProject.Infra.Context.Migrations
                     b.ToTable("AspNetUserClaims");
                 });
 
-            modelBuilder.Entity("StudyProject.Infra.Context.Identity.ApplicationUserRole", b =>
+            modelBuilder.Entity("StudyProject.Domain.Identity.ApplicationUserLogin", b =>
+                {
+                    b.Property<string>("LoginProvider");
+
+                    b.Property<string>("ProviderKey");
+
+                    b.Property<string>("ProviderDisplayName");
+
+                    b.Property<Guid>("UserId");
+
+                    b.HasKey("LoginProvider", "ProviderKey");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserLogins");
+                });
+
+            modelBuilder.Entity("StudyProject.Domain.Identity.ApplicationUserRole", b =>
                 {
                     b.Property<Guid>("UserId");
 
@@ -252,20 +239,19 @@ namespace StudyProject.Infra.Context.Migrations
                     b.ToTable("AspNetUserRoles");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
+            modelBuilder.Entity("StudyProject.Domain.Identity.ApplicationUserToken", b =>
                 {
-                    b.HasOne("StudyProject.Infra.Context.Identity.ApplicationUser")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
+                    b.Property<Guid>("UserId");
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
-                {
-                    b.HasOne("StudyProject.Infra.Context.Identity.ApplicationUser")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                    b.Property<string>("LoginProvider");
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("Value");
+
+                    b.HasKey("UserId", "LoginProvider", "Name");
+
+                    b.ToTable("AspNetUserTokens");
                 });
 
             modelBuilder.Entity("StudyProject.Domain.Entities.ClientProductValue", b =>
@@ -281,31 +267,47 @@ namespace StudyProject.Infra.Context.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("StudyProject.Infra.Context.Identity.ApplicationRoleClaim", b =>
+            modelBuilder.Entity("StudyProject.Domain.Identity.ApplicationRoleClaim", b =>
                 {
-                    b.HasOne("StudyProject.Infra.Context.Identity.ApplicationRole", "Role")
+                    b.HasOne("StudyProject.Domain.Identity.ApplicationRole", "Role")
                         .WithMany("RoleClaims")
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("StudyProject.Infra.Context.Identity.ApplicationUserClaim", b =>
+            modelBuilder.Entity("StudyProject.Domain.Identity.ApplicationUserClaim", b =>
                 {
-                    b.HasOne("StudyProject.Infra.Context.Identity.ApplicationUser", "User")
+                    b.HasOne("StudyProject.Domain.Identity.ApplicationUser", "User")
                         .WithMany("UserClaims")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("StudyProject.Infra.Context.Identity.ApplicationUserRole", b =>
+            modelBuilder.Entity("StudyProject.Domain.Identity.ApplicationUserLogin", b =>
                 {
-                    b.HasOne("StudyProject.Infra.Context.Identity.ApplicationRole", "Role")
+                    b.HasOne("StudyProject.Domain.Identity.ApplicationUser", "User")
+                        .WithMany("UserLogins")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("StudyProject.Domain.Identity.ApplicationUserRole", b =>
+                {
+                    b.HasOne("StudyProject.Domain.Identity.ApplicationRole", "Role")
                         .WithMany("UserRoles")
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("StudyProject.Infra.Context.Identity.ApplicationUser", "User")
+                    b.HasOne("StudyProject.Domain.Identity.ApplicationUser", "User")
                         .WithMany("UserRoles")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("StudyProject.Domain.Identity.ApplicationUserToken", b =>
+                {
+                    b.HasOne("StudyProject.Domain.Identity.ApplicationUser", "User")
+                        .WithMany("UserTokens")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

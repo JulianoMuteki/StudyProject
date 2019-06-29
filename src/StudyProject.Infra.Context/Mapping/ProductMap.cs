@@ -1,18 +1,21 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CtrlBox.Infra.Context.Mapping;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using StudyProject.Domain.Entities;
 
 namespace StudyProject.Infra.Context.Mapping
 {
-    public class ProductMap : IEntityTypeConfiguration<Product>
+    public class ProductMap : EntityConfiguration<Product>
     {
-        public void Configure(EntityTypeBuilder<Product> builder)
+        protected override void Initialize(EntityTypeBuilder<Product> builder)
         {
-                builder.ToTable("Products");
+            base.Initialize(builder);
 
-                builder.HasKey(e => e.ID).HasName("ProductID");
+            builder.ToTable("Products");
+            builder.Property(x => x.ID).HasColumnName("ProductID");
+            builder.HasKey(b => b.ID).HasName("ProductID");
 
-                builder.Property(e => e.Name)
+            builder.Property(e => e.Name)
                     .IsRequired()
                     .HasMaxLength(250);
 
