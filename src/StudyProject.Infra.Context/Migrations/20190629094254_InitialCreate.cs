@@ -53,7 +53,7 @@ namespace StudyProject.Infra.Context.Migrations
                 name: "Clients",
                 columns: table => new
                 {
-                    ID = table.Column<Guid>(nullable: false),
+                    ClientID = table.Column<Guid>(nullable: false),
                     CreationDate = table.Column<DateTime>(nullable: false),
                     DateModified = table.Column<DateTime>(nullable: false),
                     Name = table.Column<string>(maxLength: 250, nullable: false),
@@ -63,14 +63,14 @@ namespace StudyProject.Infra.Context.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("ClientID", x => x.ID);
+                    table.PrimaryKey("ClientID", x => x.ClientID);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Products",
                 columns: table => new
                 {
-                    ID = table.Column<Guid>(nullable: false),
+                    ProductID = table.Column<Guid>(nullable: false),
                     CreationDate = table.Column<DateTime>(nullable: false),
                     DateModified = table.Column<DateTime>(nullable: false),
                     Name = table.Column<string>(maxLength: 250, nullable: false),
@@ -79,7 +79,7 @@ namespace StudyProject.Infra.Context.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("ProductID", x => x.ID);
+                    table.PrimaryKey("ProductID", x => x.ProductID);
                 });
 
             migrationBuilder.CreateTable(
@@ -203,13 +203,13 @@ namespace StudyProject.Infra.Context.Migrations
                         name: "FK_ClientsProducts_Clients_ClientID",
                         column: x => x.ClientID,
                         principalTable: "Clients",
-                        principalColumn: "ID",
+                        principalColumn: "ClientID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_ClientsProducts_Products_ProductID",
                         column: x => x.ProductID,
                         principalTable: "Products",
-                        principalColumn: "ID",
+                        principalColumn: "ProductID",
                         onDelete: ReferentialAction.Cascade);
                 });
 

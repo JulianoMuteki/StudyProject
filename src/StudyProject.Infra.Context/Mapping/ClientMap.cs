@@ -1,16 +1,19 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CtrlBox.Infra.Context.Mapping;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using StudyProject.Domain.Entities;
 
 namespace StudyProject.Infra.Context.Mapping
 {
-    public class ClientMap : IEntityTypeConfiguration<Client>
+    public class ClientMap : EntityConfiguration<Client>
     {
-        public void Configure(EntityTypeBuilder<Client> builder)
+        protected override void Initialize(EntityTypeBuilder<Client> builder)
         {
-            builder.ToTable("Clients");
+            base.Initialize(builder);
 
-            builder.HasKey(e => e.ID).HasName("ClientID");
+            builder.ToTable("Clients");
+            builder.Property(x => x.ID).HasColumnName("ClientID");
+            builder.HasKey(b => b.ID).HasName("ClientID");
 
             builder.Property(e => e.Name)
                 .IsRequired()
