@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StudyProject.Domain.Interfaces.Base;
+using System;
 
 namespace StudyProject.Domain.Common
 {
@@ -7,6 +8,20 @@ namespace StudyProject.Domain.Common
         public Guid ID { get; protected set; }
         public DateTime CreationDate { get; protected set; }
         public DateTime DateModified { get; protected set; }
+
+        private static IComponentValidate _component;
+        public static IComponentValidate InstanceComponent()
+        {
+            if (_component == null)
+                _component = new ValidateBase();
+
+            return _component;
+        }
+
+        public EntityBase()
+        {
+
+        }
 
         public override bool Equals(object obj)
         {
