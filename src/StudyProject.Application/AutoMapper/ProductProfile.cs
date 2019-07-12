@@ -9,6 +9,8 @@ namespace StudyProject.Application.AutoMapper
         public ProductProfile()
         {
             CreateMap<Product, ProductVM>();
+            CreateMap<ProductVM, Product>()             
+                           .AfterMap((src, dest) => dest.Init());
         }
     }
 }

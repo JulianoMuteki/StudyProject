@@ -1,7 +1,6 @@
 ﻿using StudyProject.Domain.Common;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace StudyProject.Domain.Entities
 {
@@ -14,11 +13,17 @@ namespace StudyProject.Domain.Entities
         public ICollection<ClientProductValue> ClientsProductsValues { get; set; }
 
         public Product()
+            :base()
         {
-            this.ID = Guid.NewGuid();
-            this.DateModified = DateTime.Now;
-            this.CreationDate = DateTime.Now;
             this.ClientsProductsValues = new HashSet<ClientProductValue>();
+        }
+
+        public void Init()
+        {
+            if(this.ID == null || this.ID == Guid.Empty)
+            {
+                base.InitData();
+            }
         }
     }
 }

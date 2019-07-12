@@ -23,7 +23,14 @@ namespace StudyProject.Domain.Common
 
         public EntityBase()
         {
+            InitData();
+        }
 
+        public void InitData()
+        {
+            this.ID = Guid.NewGuid();
+            this.DateModified = DateTime.Now;
+            this.CreationDate = DateTime.Now;
         }
 
         public override bool Equals(object obj)
