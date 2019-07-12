@@ -9,13 +9,16 @@ namespace StudyProject.Domain.Common
         public DateTime CreationDate { get; protected set; }
         public DateTime DateModified { get; protected set; }
 
-        private static IComponentValidate _component;
-        public static IComponentValidate InstanceComponent()
+        private IComponentValidate _component;
+        public IComponentValidate ComponentValidator
         {
-            if (_component == null)
-                _component = new ValidateBase();
+            get
+            {
+                if (_component == null)
+                    _component = new ValidateBase();
 
-            return _component;
+                return _component;
+            }
         }
 
         public EntityBase()
