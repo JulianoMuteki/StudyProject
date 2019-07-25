@@ -87,7 +87,7 @@ namespace StudyProject.Infra.Repository.Common
         public async Task<T> AddAsync(T entity)
         {
             _context.Set<T>().Add(entity);
-            await _unitOfWork.Commit();
+            await _unitOfWork.CommitAsync();
             return entity;
         }
 
@@ -114,7 +114,7 @@ namespace StudyProject.Infra.Repository.Common
 
             _context.Set<T>().Attach(updated);
             _context.Entry(updated).State = EntityState.Modified;
-            await _unitOfWork.Commit();
+            await _unitOfWork.CommitAsync();
 
             return updated;
         }
@@ -128,7 +128,7 @@ namespace StudyProject.Infra.Repository.Common
         public async Task<int> DeleteAsync(T t)
         {
             _context.Set<T>().Remove(t);
-            return await _unitOfWork.Commit();
+            return await _unitOfWork.CommitAsync();
         }
 
         public int Count()

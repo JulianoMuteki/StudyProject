@@ -71,7 +71,7 @@ namespace StudyProject.Infra.Repository
             }
         }
 
-        public async Task<int> Commit()
+        public async Task<int> CommitAsync()
         {
             return await _dbContext.SaveChangesAsync();
         }
@@ -79,6 +79,11 @@ namespace StudyProject.Infra.Repository
         public void Rollback()
         {
             _dbContext.ChangeTracker.Entries().ToList().ForEach(x => x.Reload());
+        }
+
+        public int Commit()
+        {
+            return  _dbContext.SaveChanges();
         }
     }
 }
