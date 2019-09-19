@@ -14,12 +14,10 @@ namespace StudyProject.Infra.Repository.Common
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
         private readonly StudyProjectContext _context;
-        private readonly IUnitOfWork _unitOfWork;
 
         public GenericRepository(StudyProjectContext context)
         {
             _context = context;
-            _unitOfWork = new UnitOfWork(context);
         }
 
         public IQueryable<T> Query()
@@ -80,14 +78,6 @@ namespace StudyProject.Infra.Repository.Common
         public T Add(T entity)
         {
             _context.Set<T>().Add(entity);
-            _context.SaveChanges();
-            return entity;
-        }
-
-        public async Task<T> AddAsync(T entity)
-        {
-            _context.Set<T>().Add(entity);
-            await _unitOfWork.Commit();
             return entity;
         }
 
@@ -100,22 +90,6 @@ namespace StudyProject.Infra.Repository.Common
 
             _context.Set<T>().Attach(updated);
             _context.Entry(updated).State = EntityState.Modified;
-            _context.SaveChanges();
-
-            return updated;
-        }
-
-        public async Task<T> UpdateAsync(T updated)
-        {
-            if (updated == null)
-            {
-                return null;
-            }
-
-            _context.Set<T>().Attach(updated);
-            _context.Entry(updated).State = EntityState.Modified;
-            await _unitOfWork.Commit();
-
             return updated;
         }
 
@@ -123,12 +97,6 @@ namespace StudyProject.Infra.Repository.Common
         {
             _context.Set<T>().Remove(t);
             _context.SaveChanges();
-        }
-
-        public async Task<int> DeleteAsync(T t)
-        {
-            _context.Set<T>().Remove(t);
-            return await _unitOfWork.Commit();
         }
 
         public int Count()
@@ -181,6 +149,21 @@ namespace StudyProject.Infra.Repository.Common
         {
             var exist = _context.Set<T>().Where(predicate);
             return exist.Any();
+        }
+
+        public Task<T> AddAsync(T entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<T> UpdateAsync(T updated)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<int> DeleteAsync(T t)
+        {
+            throw new NotImplementedException();
         }
     }
 }

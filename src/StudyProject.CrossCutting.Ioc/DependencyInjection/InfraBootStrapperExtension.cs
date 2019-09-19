@@ -16,7 +16,6 @@
         /// <param name="services">The services.</param>
         public static IServiceCollection RegisterInfraBootStrapper(this IServiceCollection services)
         {
-            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddTransient<IUnitOfWork, UnitOfWork>();
 
             return services;
