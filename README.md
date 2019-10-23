@@ -24,8 +24,6 @@ Futuro:
 O que eu quero aprender: DDD + CQRS + SOLID
  
  Referências:
-  - https://desenvolvedor.io/
-  - https://balta.io/
   - https://www.freecodecamp.org/
   - https://docs.microsoft.com/en-us/
   - https://stackoverflow.com/
