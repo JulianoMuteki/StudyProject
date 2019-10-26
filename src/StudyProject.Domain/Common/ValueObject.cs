@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StudyProject.Domain.Interfaces.Base;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 
@@ -91,6 +92,18 @@ namespace StudyProject.Domain.Common
         public static bool operator !=(ValueObject<T> x, ValueObject<T> y)
         {
             return !(x == y);
+        }
+
+        private IComponentValidate _component;
+        public IComponentValidate ComponentValidator
+        {
+            get
+            {
+                if (_component == null)
+                    _component = new ValidateBase();
+
+                return _component;
+            }
         }
     }
 }
