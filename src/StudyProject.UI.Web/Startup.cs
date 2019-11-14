@@ -13,6 +13,7 @@
     using StudyProject.Domain.Security;
     using StudyProject.Infra.Context;
     using StudyProject.UI.WebCore.AutoMapper;
+    using StudyProject.UI.WebCore.Extensions;
     using System;
     using Microsoft.AspNetCore.Mvc;
 
