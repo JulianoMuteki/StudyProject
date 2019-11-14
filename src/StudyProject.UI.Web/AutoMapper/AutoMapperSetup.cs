@@ -1,6 +1,7 @@
-﻿using StudyProject.Application.AutoMapper;
+﻿
 using AutoMapper;
 using Microsoft.Extensions.DependencyInjection;
+using StudyProject.Application.AutoMapper;
 using System;
 
 namespace StudyProject.UI.WebCore.AutoMapper
@@ -18,11 +19,11 @@ namespace StudyProject.UI.WebCore.AutoMapper
         {
             if (services == null) throw new ArgumentNullException(nameof(services));
 
-            services.AddAutoMapper();
-
             // Registering Mappings automatically only works if the 
             // Automapper Profile classes are in ASP.NET project
-            AutoMapperConfig.RegisterMappings();
+            var mappingConfig = AutoMapperConfig.RegisterMappings();
+            IMapper mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);
         }
     }
 }
