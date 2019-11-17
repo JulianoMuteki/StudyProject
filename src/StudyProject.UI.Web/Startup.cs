@@ -4,16 +4,17 @@
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Identity;
-    using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Hosting;
     using StudyProject.CrossCutting.Ioc.DependencyInjection;
     using StudyProject.Domain.Identity;
     using StudyProject.Domain.Security;
     using StudyProject.Infra.Context;
     using StudyProject.UI.WebCore.AutoMapper;
     using System;
+    using Microsoft.AspNetCore.Mvc;
 
     public class Startup
     {
@@ -59,22 +60,17 @@
                 options.User.RequireUniqueEmail = true;
             });
 
-            services.ConfigureApplicationCookie(options =>
+            services.Configure<CookiePolicyOptions>(options =>
             {
-                // Cookie settings
-                options.Cookie.HttpOnly = true;
-                options.Cookie.Expiration = TimeSpan.FromDays(150);
-                // If the LoginPath isn't set, ASP.NET Core defaults 
-                // the path to /Account/Login.
-                options.LoginPath = "/Account/Login";
-                options.LogoutPath = "/Account/Logout";
-                options.ReturnUrlParameter = "ReturnUrl";
-                // If the AccessDeniedPath isn't set, ASP.NET Core defaults 
-                // the path to /Account/AccessDenied.
-                // Error 403
-                options.AccessDeniedPath = "/Account/AccessDenied";
-                options.SlidingExpiration = true;
+                options.HttpOnly = Microsoft.AspNetCore.CookiePolicy.HttpOnlyPolicy.Always;
+
+                // This lambda determines whether user consent for non-essential 
+                // cookies is needed for a given request.
+                options.CheckConsentNeeded = context => true;
+                // requires using Microsoft.AspNetCore.Http;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+
             services.AddAuthorization(options =>
             {
                 foreach (var item in PolicyTypes.ListAllClaims)
@@ -83,23 +79,21 @@
                 }
             });
             // Add application services.
-            services.AddMvc().AddRazorPagesOptions(options => {
-                options.Conventions.AddAreaPageRoute("Identity", "/Account/Login", "/Login");
-            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddControllersWithViews().AddNewtonsoftJson();
+            services.AddRazorPages().AddNewtonsoftJson();
 
             services.AddAutoMapperSetup();
+
             services.RegisterInfraBootStrapper();
             services.RegisterApplicationBootStrapper();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-               // app.UseBrowserLink();
-                app.UseDatabaseErrorPage();
             }
             else
             {
@@ -111,17 +105,18 @@
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+
+            app.UseRouting();
             app.UseAuthentication();
+            app.UseAuthorization();
 
-            app.UseMvc(routes =>
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute(
-                   name: "Identity",
-                   template: "{controller=Account}/{action=Login}");
-
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
+                endpoints.MapControllerRoute(
+                          name: "default",
+                          pattern:
+                  "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
