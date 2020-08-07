@@ -1,5 +1,5 @@
 # Study Project
-ASP.NET MVC Core + EF Core
+ASP.NET MVC Core + EF Core + NET 5
 
 Este projeto é usado como base de estudo para aperfeiçoar minhas habilidades técnicas. Estou modelando conforme tutoriais, vídeos e demos.
 Ainda muitos bugs mas faz parte. Estou aberto a sugestões, dicas 😁
@@ -12,11 +12,10 @@ Futuro:
  - ASP.NET MVC Core
  - Fluent Validation
  - Entity Framework Core
- - Vue.js
  - Swagger
  - RabbitMQ 📝
  - SQL Server 
- - MongoDB
+ - Postgres
  - Docker
  - Azure ☁️
  - Tests
