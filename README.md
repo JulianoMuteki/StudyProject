@@ -1,3 +1,5 @@
+[![Build Status](https://julianopestili.visualstudio.com/StudyProject/_apis/build/status/JulianoMuteki.StudyProject?branchName=master)](https://julianopestili.visualstudio.com/StudyProject/_build/latest?definitionId=3&branchName=master)
+
 # Study Project
 ASP.NET MVC Core + EF Core + NET 5
 
