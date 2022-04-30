@@ -1,9 +1,7 @@
 ﻿using StudyProject.Domain.Entities;
 using StudyProject.Domain.Interfaces.Application;
 using StudyProject.Domain.Interfaces.Base;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace StudyProject.Application
@@ -16,7 +14,7 @@ namespace StudyProject.Application
         {
             _unitOfWork = unitOfWork;
         }
-        public async Task<IEnumerable<Product>> GetAllClient()
+        public async Task<IEnumerable<Product>> GetAllProducts()
         {
             return await _unitOfWork.Repository<Product>().GetAllAsync();
         }
@@ -24,7 +22,6 @@ namespace StudyProject.Application
         public ICollection<Product> GetAll()
         {
             return _unitOfWork.Repository<Product>().GetAll();
-
         }
 
     }
