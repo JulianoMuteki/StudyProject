@@ -1,4 +1,5 @@
-[![Build Status](https://julianopestili.visualstudio.com/StudyProject/_apis/build/status/JulianoMuteki.StudyProject?branchName=master)](https://julianopestili.visualstudio.com/StudyProject/_build/latest?definitionId=3&branchName=master)
+[![.NET](https://github.com/JulianoMuteki/StudyProject/actions/workflows/dotnet.yml/badge.svg?branch=master)](https://github.com/JulianoMuteki/StudyProject/actions/workflows/dotnet.yml)
+
 
 # Study Project
 ASP.NET MVC Core + EF Core + NET 5
