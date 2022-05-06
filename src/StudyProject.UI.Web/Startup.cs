@@ -70,7 +70,7 @@
                 // requires using Microsoft.AspNetCore.Http;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-
+            services.AddAuthentication();
             services.AddAuthorization(options =>
             {
                 foreach (var item in PolicyTypes.ListAllClaims)
