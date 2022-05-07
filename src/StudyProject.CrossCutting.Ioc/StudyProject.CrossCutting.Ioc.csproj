@@ -9,4 +9,8 @@
     <ProjectReference Include="..\StudyProject.Infra.Data\StudyProject.Infra.Repository.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ServicesCollectionCommon\" />
+  </ItemGroup>
+
 </Project>
