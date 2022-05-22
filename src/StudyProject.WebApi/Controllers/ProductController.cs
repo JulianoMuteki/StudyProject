@@ -27,9 +27,9 @@ namespace StudyProject.WebApi.Controllers
             _logger = logger;
             _configuration = configuration;
         }
-        [HttpGet("Index")]
+        [HttpGet]
         [AuthorizePolicyEnum(PERMISSIONS.Index)]
-        public IActionResult Index()
+        public IActionResult Get()
         {
             try
             {
@@ -42,7 +42,7 @@ namespace StudyProject.WebApi.Controllers
         }
 
         // POST: ProductController/Delete/5
-        [HttpPost]
+        [HttpDelete("{id}")]
         [AuthorizePolicyEnum(PERMISSIONS.Delete)]
         public IActionResult Delete(int id)
         {

@@ -90,10 +90,10 @@ namespace StudyProject.WebApi.Controllers
             return BadRequest("Error in change password");
         }
 
-        [HttpPost("Delete")]
-        public async Task<IActionResult> Delete([FromBody] LoginViewModel model)
+        [HttpDelete("{email}")]
+        public async Task<IActionResult> Delete(string email)
         {
-            var user = await _userManager.FindByEmailAsync(model.Email);
+            var user = await _userManager.FindByEmailAsync(email);
             if (user != null)
             {
                

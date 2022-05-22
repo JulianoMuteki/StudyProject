@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using StudyProject.Application.Identity.AccountViewModels;
+using StudyProject.Application.Services;
 using StudyProject.Domain.Identity;
 using StudyProject.Secutity;
 
@@ -18,12 +19,15 @@ namespace StudyProject.WebApi.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IConfiguration _configuration;
         private readonly ILogger _logger;
+        private readonly ICustomEmailSender _customEmailSender;
         public AccountController(
            UserManager<ApplicationUser> userManager,
            SignInManager<ApplicationUser> signInManager,
            RoleManager<ApplicationRole> roleManager,
-           ILogger<AccountController> logger, IConfiguration configuration)
+           ILogger<AccountController> logger, IConfiguration configuration,
+           ICustomEmailSender customEmailSender)
         {
+            _customEmailSender = customEmailSender;
             _userManager = userManager;
             _signInManager = signInManager;
             _roleManager = roleManager;
@@ -116,8 +120,10 @@ namespace StudyProject.WebApi.Controllers
                     try
                     {
                         var newuser = await _userManager.FindByEmailAsync(model.Email);
-                    
-                        jwtToken = await _userManager.GenerateEmailConfirmationTokenAsync(newuser);
+
+                        var emailConfirmationToken = await _userManager.GenerateEmailConfirmationTokenAsync(newuser);
+
+                        await _customEmailSender.SendEmailAsync(newuser.Email, "StudyProject TOKEN", emailConfirmationToken);
                     }
                     catch (Exception ex)
                     {
@@ -152,5 +158,6 @@ namespace StudyProject.WebApi.Controllers
 
             return BadRequest("Error to validate token");
         }
+
     }
 }

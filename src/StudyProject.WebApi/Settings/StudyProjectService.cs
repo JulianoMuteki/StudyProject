@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using StudyProject.Application.Settings;
 using StudyProject.CrossCutting.Ioc.DependencyInjection;
 using StudyProject.Domain.Identity;
 using StudyProject.Domain.Security;
@@ -13,6 +14,7 @@ namespace StudyProject.WebApi.Settings
         public static void ConfigureServices(WebApplicationBuilder builder)
         {
             var services = builder.Services;
+            services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
 
             services.AddDbContext<StudyProjectContext>(item => item.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
