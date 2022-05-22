@@ -2,27 +2,33 @@
 
 
 # Study Project
-ASP.NET MVC Core + EF Core + NET 5
+ASP.NET MVC Core + EF Core + NET 6
 
-Este projeto é usado como base de estudo para aperfeiçoar minhas habilidades técnicas. Estou modelando conforme tutoriais, vídeos e demos.
+🇺🇸 This project is used as a study base to improve my technical skills. I'm modeling according to tutorials, videos and books.
+It has still a lot of bugs but that's part of it. I'm open to suggestions, tips.
+
+🇧🇷 Este projeto é usado como base de estudo para aperfeiçoar minhas habilidades técnicas. Estou modelando conforme tutoriais, vídeos e demos.
 Ainda muitos bugs mas faz parte. Estou aberto a sugestões, dicas 😁
 
-Futuro:
+🇮🇹 Questo progetto viene utilizzato come base di studio per migliorare le mie capacità tecniche. Sto modellando secondo tutorial, video e libri.
+Ha ancora molti bug, ma ne fa parte. Sono aperto a suggerimenti, consigli.
+
+Stack project:
  - API ASP.NET Core
  - ASP.NET MVC Core
  - Fluent Validation
  - Entity Framework Core
+ - IdentityUser
  - Swagger
- - RabbitMQ 📝
+ - RabbitMQ 
  - SQL Server 
- - Postgres
  - Docker
- - Azure ☁️
+ - Azure
  - Tests
  
-O que eu quero aprender: DDD + CQRS + SOLID
+What i want to learn: DDD + CQRS + SOLID
  
- Referências:
+ References:
   - https://www.freecodecamp.org/
   - https://docs.microsoft.com/en-us/
   - https://stackoverflow.com/
