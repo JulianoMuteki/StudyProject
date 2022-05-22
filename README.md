@@ -13,7 +13,7 @@ Ainda muitos bugs mas faz parte. Estou aberto a sugestões, dicas 😁
 🇮🇹 Questo progetto viene utilizzato come base di studio per migliorare le mie capacità tecniche. Sto modellando secondo tutorial, video e libri.
 Ha ancora molti bug, ma ne fa parte. Sono aperto a suggerimenti, consigli.
 
-Futuro:
+Stack project:
  - API ASP.NET Core
  - ASP.NET MVC Core
  - Fluent Validation
@@ -26,7 +26,7 @@ Futuro:
  - Azure
  - Tests
  
-Wwhat i want to learn: DDD + CQRS + SOLID
+What i want to learn: DDD + CQRS + SOLID
  
  References:
   - https://www.freecodecamp.org/
