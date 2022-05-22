@@ -12,13 +12,13 @@ namespace StudyProject.WebApi.Controllers
     [Route("[controller]")]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Authorize(Roles = "Admin")]
-    public class ManageController : ControllerBase
+    public class UserManagementController : ControllerBase
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IConfiguration _configuration;
         private readonly ILogger _logger;
-        public ManageController(
+        public UserManagementController(
            UserManager<ApplicationUser> userManager,
            SignInManager<ApplicationUser> signInManager,
            ILogger<AccountController> logger, IConfiguration configuration)
@@ -30,7 +30,7 @@ namespace StudyProject.WebApi.Controllers
         }
 
 
-        [HttpPost("getUsers")]
+        [HttpGet("Users")]
         public IActionResult Get()
         {
            var users = _userManager.Users.ToList()
@@ -41,7 +41,7 @@ namespace StudyProject.WebApi.Controllers
             return Ok(users);
         }
 
-        [HttpPost("resetPassword")]
+        [HttpPost("ResetPassword")]
         public async Task<IActionResult> ResetPassword(ResetPasswordViewModel model)
         {
             if (!ModelState.IsValid)
@@ -65,7 +65,7 @@ namespace StudyProject.WebApi.Controllers
             return BadRequest("Error in reset password");
         }
 
-        [HttpPost("changePassword")]
+        [HttpPut("ChangePassword")]
         public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
         {
             if (!ModelState.IsValid)
@@ -90,7 +90,7 @@ namespace StudyProject.WebApi.Controllers
             return BadRequest("Error in change password");
         }
 
-        [HttpPost("delete")]
+        [HttpPost("Delete")]
         public async Task<IActionResult> Delete([FromBody] LoginViewModel model)
         {
             var user = await _userManager.FindByEmailAsync(model.Email);

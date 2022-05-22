@@ -4,6 +4,7 @@ using StudyProject.CrossCutting.Ioc.DependencyInjection;
 using StudyProject.Domain.Identity;
 using StudyProject.Domain.Security;
 using StudyProject.Infra.Context;
+using System.Security.Claims;
 
 namespace StudyProject.WebApi.Settings
 {
@@ -33,20 +34,23 @@ namespace StudyProject.WebApi.Settings
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
                 options.Lockout.MaxFailedAccessAttempts = 5;
                 options.Lockout.AllowedForNewUsers = true;
-                options.Tokens.EmailConfirmationTokenProvider = "emailconfirmation";
-
+                // options.Tokens.EmailConfirmationTokenProvider = "emailconfirmation";
+                options.Tokens.EmailConfirmationTokenProvider = TokenOptions.DefaultEmailProvider;
                 // User settings
                 options.User.RequireUniqueEmail = true;
                 options.SignIn.RequireConfirmedEmail = true;
             });
-           
+
+
             services.AddAuthorization(options =>
             {
+                options.AddPolicy("ShouldContainRole", options => options.RequireClaim(ClaimTypes.Role));
+
                 foreach (var item in PolicyTypes.ListAllClaims)
                 {
-                    options.AddPolicy(item.Value.Value, policy => { policy.RequireClaim(CustomClaimTypes.DefaultPermission, item.Value.Value); });
+                    options.AddPolicy(item.Value.Value, policy => { policy.RequireClaim(item.Value.Type, item.Value.Value); });
                 }
-            });                      
+            });
 
             services.AddAutoMapperSetup();
             services.RegisterInfraBootStrapper();

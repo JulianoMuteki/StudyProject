@@ -7,24 +7,17 @@ namespace StudyProject.Secutity
 {
     public static class CustomToken
     {
-        public static UserToken GenerateToken(string userUniqueName, string jwtKey, string tokenExpireHours, string tokenIssuer, string tokenAudience, IList<string> roles)
+        public static UserToken GenerateToken(string userUniqueName, string jwtKey, string tokenExpireHours, string tokenIssuer, string tokenAudience, IList<Claim> userClaims)
         {
-            //var claims = new[]
-            //{
-            //     new Claim(JwtRegisteredClaimNames.UniqueName, userUniqueName),
-            //     new Claim("meuPet", "pipoca"),
-            //     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-            // };
-
             var claims = new List<Claim>();
             claims.Add(new Claim(JwtRegisteredClaimNames.UniqueName, userUniqueName));
             claims.Add(new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()));
-
-            // Add roles as multiple claims
-            foreach (var role in roles)
-            {
-                claims.Add(new Claim(ClaimTypes.Role, role));
-            }
+            claims.AddRange(userClaims);
+            //// Add roles as multiple claims
+            //foreach (var role in roles)
+            //{
+            //    claims.Add(new Claim(ClaimTypes.Role, role));
+            //}
 
             var key = new SymmetricSecurityKey(
                 Encoding.UTF8.GetBytes(jwtKey));

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -8,73 +9,120 @@ using StudyProject.Secutity;
 namespace StudyProject.WebApi.Controllers
 {
     [AllowAnonymous]
-    [ApiController]
-    [Route("[controller]")]
+    [ApiController]    
+    [Route("api/[controller]")]
     public class AccountController : ControllerBase
     {
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly RoleManager<ApplicationRole> _roleManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IConfiguration _configuration;
         private readonly ILogger _logger;
         public AccountController(
            UserManager<ApplicationUser> userManager,
            SignInManager<ApplicationUser> signInManager,
+           RoleManager<ApplicationRole> roleManager,
            ILogger<AccountController> logger, IConfiguration configuration)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _roleManager = roleManager;
             _logger = logger;
             _configuration = configuration;
         }
-        
-        [HttpPost("login")]
+
+        [HttpPost("Login")]
         public async Task<IActionResult> Login([FromBody] LoginViewModel model)
         {
             if (ModelState.IsValid)
-            {                
+            {
+                var existingUser = await _userManager.FindByEmailAsync(model.Email);
+
+                if (existingUser == null)
+                {
+                    return BadRequest(new {
+                        Errors = "Invalid login request",
+                        Success = false
+                    });
+                }
+
+                var isCorrect = await _userManager.CheckPasswordAsync(existingUser, model.Password);
+
+                if (!isCorrect)
+                {
+                    return BadRequest(new
+                    {
+                        Errors = "Invalid login request",
+                        Success = false
+                    });
+                }
+
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
                 var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: true);
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("User logged in.");
-                    var user = await _userManager.FindByEmailAsync(model.Email);
-                    var rolesForUser = await _userManager.GetRolesAsync(user);
-
+                    _logger.LogInformation("User logged in.");                    
+                    
+                    var claims = await ApplicationUserService.GetClaimsByUser(existingUser, _roleManager, _userManager);
                     return Ok(CustomToken.GenerateToken(model.Email, _configuration["Jwt:key"],
                                                              _configuration["TokenConfiguration:ExpireHours"],
                                                              _configuration["TokenConfiguration:Issuer"],
                                                              _configuration["TokenConfiguration:Audience"],
-                                                             rolesForUser));
+                                                             claims));
                 }
                 if (result.IsLockedOut)
                 {
                     _logger.LogWarning("User account locked out.");
-                    return BadRequest("User account locked out.");
-                }
-                else
-                {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                    return BadRequest(ModelState.Values);
+                    return BadRequest(new
+                    {
+                        Errors = "User account locked out.",
+                        Success = false
+                    });
                 }
             }
-            return BadRequest(ModelState.Values);
+            _logger.LogWarning("Invalid login attempt.");
+            return BadRequest(new
+            {
+                Errors = "Invalid login attempt.",
+                Success = false
+            });
         }
 
-        [HttpPost("register")]
+        [HttpPost("Register")]
         public async Task<IActionResult> Register([FromBody] RegisterViewModel model)
         {
+            string jwtToken = string.Empty;
+
             if (ModelState.IsValid)
-            {                
+            {
+                // We can utilise the model
+                var existingUser = await _userManager.FindByEmailAsync(model.Email);
+
+                if (existingUser != null)
+                {
+                    return BadRequest(new
+                    {
+                        Errors = "Email already in use",
+                        Success = false
+                    });
+                }
+
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
+                    try
+                    {
+                        var newuser = await _userManager.FindByEmailAsync(model.Email);
+                    
+                        jwtToken = await _userManager.GenerateEmailConfirmationTokenAsync(newuser);
+                    }
+                    catch (Exception ex)
+                    {
 
-                    var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-
-                    _logger.LogInformation("User created a new account with password.");
+                    }
                 }
                 else
                     return BadRequest(result.Errors);
@@ -82,11 +130,12 @@ namespace StudyProject.WebApi.Controllers
             else
                 return BadRequest(ModelState);
 
-            return Ok(); // passtoken
+            return Ok(jwtToken); // passtoken
         }
 
-        [HttpPost("validateCode")]
-        public async Task<IActionResult> ValidateCode([FromBody] LoginViewModel model, string token)
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [HttpPost("ValidateRegister")]
+        public async Task<IActionResult> ValidateRegister([FromBody] LoginViewModel model, string token)
         {
             var user = await _userManager.FindByEmailAsync(model.Email);
             if (user == null)
@@ -98,13 +147,10 @@ namespace StudyProject.WebApi.Controllers
             var result = await _userManager.ConfirmEmailAsync(user, token);
             if (result.Succeeded)
             {
-                       
-                   
-                    return Ok(); // passtoken
-                        
+                return Ok(); // passtoken                        
             }
 
-            return BadRequest("Error to validate code");
+            return BadRequest("Error to validate token");
         }
     }
 }

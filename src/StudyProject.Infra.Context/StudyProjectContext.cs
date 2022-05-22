@@ -24,7 +24,7 @@ namespace StudyProject.Infra.Context
         public StudyProjectContext(DbContextOptions<StudyProjectContext> options)
             : base(options)
         {
-           this.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+          // this.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
