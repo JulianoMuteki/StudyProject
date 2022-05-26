@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  study-projct-api:
+    image: study-projct:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80       
+    volumes:
+      - /mnt/c/Users/julia/AppData/Roaming/Microsoft/UserSecrets/$USER_SECRETS_ID:/root/.microsoft/usersecrets/$USER_SECRETS_ID

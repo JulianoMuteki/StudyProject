@@ -29,9 +29,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudyProject.Infra.Context"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudyProject.CrossCutting.Ioc", "src\StudyProject.CrossCutting.Ioc\StudyProject.CrossCutting.Ioc.csproj", "{AC8BA59A-E0DD-47F6-87EE-B34ECAFE8BB7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudyProject.WebApi", "src\StudyProject.WebApi\StudyProject.WebApi.csproj", "{AC08D0F7-F3FE-4478-BC56-EEC64E0F65CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudyProject.WebApi", "src\StudyProject.WebApi\StudyProject.WebApi.csproj", "{AC08D0F7-F3FE-4478-BC56-EEC64E0F65CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudyProject.Secutity", "src\StudyProject.Secutity\StudyProject.Secutity.csproj", "{487264D6-1758-45A8-9EC7-3319E0331986}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudyProject.Secutity", "src\StudyProject.Secutity\StudyProject.Secutity.csproj", "{487264D6-1758-45A8-9EC7-3319E0331986}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - Docker", "5 - Docker", "{5FF06F6A-6155-43B8-9041-F1F212CD1185}"
+	ProjectSection(SolutionItems) = preProject
+		.env.dev = .env.dev
+		docker-compose.yaml = docker-compose.yaml
+		Dockerfile = Dockerfile
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
