@@ -88,7 +88,7 @@ else
 }
 
 app.UseHttpsRedirection();
-
+app.UseHealthChecks("/Health");
 app.UseRouting();
 
 app.UseAuthentication();

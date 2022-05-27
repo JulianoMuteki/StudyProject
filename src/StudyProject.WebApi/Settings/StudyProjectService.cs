@@ -42,7 +42,8 @@ namespace StudyProject.WebApi.Settings
                 options.User.RequireUniqueEmail = true;
                 options.SignIn.RequireConfirmedEmail = true;
             });
-
+            services.AddHealthChecks()
+                .AddDbContextCheck<StudyProjectContext>();
 
             services.AddAuthorization(options =>
             {
