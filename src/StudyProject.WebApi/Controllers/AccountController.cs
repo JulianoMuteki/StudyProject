@@ -121,9 +121,9 @@ namespace StudyProject.WebApi.Controllers
                     {
                         var newuser = await _userManager.FindByEmailAsync(model.Email);
 
-                        var emailConfirmationToken = await _userManager.GenerateEmailConfirmationTokenAsync(newuser);
+                        var codeEmailConfirmation = await _userManager.GenerateEmailConfirmationTokenAsync(newuser);
 
-                        await _customEmailSender.SendEmailAsync(newuser.Email, "StudyProject TOKEN", emailConfirmationToken);
+                        await _customEmailSender.SendEmailAsync(newuser.Email, "StudyProject TOKEN", codeEmailConfirmation);
                     }
                     catch (Exception ex)
                     {
@@ -139,9 +139,8 @@ namespace StudyProject.WebApi.Controllers
             return Ok(jwtToken); // passtoken
         }
 
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost("ValidateRegister")]
-        public async Task<IActionResult> ValidateRegister([FromBody] LoginViewModel model, string token)
+        public async Task<IActionResult> ValidateRegister([FromBody] LoginViewModel model, string emailCode)
         {
             var user = await _userManager.FindByEmailAsync(model.Email);
             if (user == null)
@@ -150,13 +149,45 @@ namespace StudyProject.WebApi.Controllers
                 return BadRequest("Not found");
             }
 
-            var result = await _userManager.ConfirmEmailAsync(user, token);
+            var result = await _userManager.ConfirmEmailAsync(user, emailCode);
             if (result.Succeeded)
             {
                 return Ok(); // passtoken                        
             }
 
             return BadRequest("Error to validate token");
+        }
+
+        [HttpPost("SendTokenEmail")]
+        public async Task<IActionResult> SendTokenEmail([FromBody] LoginViewModel model)
+        {
+            string jwtToken = string.Empty;
+
+            if (ModelState.IsValid)
+            {
+                // We can utilise the model
+                var existingUser = await _userManager.FindByEmailAsync(model.Email);
+
+                if (existingUser != null)
+                {
+                    _logger.LogInformation("User created a new account with password.");
+                    try
+                    {
+                        var emailConfirmationToken = await _userManager.GenerateEmailConfirmationTokenAsync(existingUser);
+                        await _customEmailSender.SendEmailAsync(existingUser.Email, "StudyProject TOKEN", emailConfirmationToken);
+                    }
+                    catch (Exception ex)
+                    {
+                        return BadRequest(ex);
+                    }
+                }
+                else
+                    return BadRequest("User not found");
+            }
+            else
+                return BadRequest(ModelState);
+
+            return Ok(); // passtoken
         }
 
     }
