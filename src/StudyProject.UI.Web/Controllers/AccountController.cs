@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using StudyProject.Application.Identity.AccountViewModels;
 using StudyProject.Application.Services;
 using StudyProject.Domain.Identity;
+using StudyProject.UI.WebCore.Extensions;
 
 namespace StudyProject.UI.WebCore.Controllers
 {

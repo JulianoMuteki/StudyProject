@@ -1,6 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace Microsoft.EntityFrameworkCore
+namespace StudyProject.Infra.Context.Extensions
 {
     public static class ModelBuilderExtensions
     {

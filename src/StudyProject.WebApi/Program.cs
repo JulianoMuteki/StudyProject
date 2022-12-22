@@ -14,8 +14,6 @@ builder.Services.AddControllers()
             = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
         });
 
-builder.Services.AddEndpointsApiExplorer();
-
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Study Project API", Version = "v1" });
@@ -46,6 +44,9 @@ builder.Services.AddSwaggerGen(c =>
                     }
                 });
 });
+
+builder.Services.AddEndpointsApiExplorer();
+
 
 builder.Services.AddAuthentication(option =>
 {

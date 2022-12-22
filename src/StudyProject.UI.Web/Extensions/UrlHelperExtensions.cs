@@ -1,10 +1,11 @@
-﻿using StudyProject.UI.WebCore.Controllers;
+﻿using Microsoft.AspNetCore.Mvc;
+using StudyProject.UI.WebCore.Controllers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Microsoft.AspNetCore.Mvc
+namespace StudyProject.UI.WebCore.Extensions
 {
     public static class UrlHelperExtensions
     {

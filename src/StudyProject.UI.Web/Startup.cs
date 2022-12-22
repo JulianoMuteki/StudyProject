@@ -1,4 +1,4 @@
-﻿namespace StudyProject.UI.Web
+﻿namespace StudyProject.UI.WebCore
 {
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -12,9 +12,7 @@
     using StudyProject.Domain.Identity;
     using StudyProject.Domain.Security;
     using StudyProject.Infra.Context;
-    using StudyProject.UI.WebCore.AutoMapper;
     using System;
-    using Microsoft.AspNetCore.Mvc;
 
     public class Startup
     {

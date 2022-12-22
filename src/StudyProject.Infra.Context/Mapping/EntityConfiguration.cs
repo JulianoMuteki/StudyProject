@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace CtrlBox.Infra.Context.Mapping
+namespace StudyProject.Infra.Context.Mapping
 {
     public abstract class EntityConfiguration<T> : IEntityTypeConfiguration<T> where T : EntityBase
     {

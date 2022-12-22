@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 using StudyProject.Infra.Context;
 using System;
 
-namespace StudyProject.UI.Web
+namespace StudyProject.UI.WebCore
 {
     public class Program
     {

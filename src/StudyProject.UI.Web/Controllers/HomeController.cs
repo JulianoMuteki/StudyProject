@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using StudyProject.Application.Identity;
 using StudyProject.Application.ViewModels;
 using StudyProject.Domain.Interfaces.Application;
-using StudyProject.UI.Web.Models;
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace StudyProject.UI.Web.Controllers
+namespace StudyProject.UI.WebCore.Controllers
 {
     public class HomeController : Controller
     {

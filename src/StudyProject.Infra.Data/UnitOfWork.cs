@@ -1,8 +1,8 @@
 ﻿using StudyProject.Domain.Interfaces.Base;
 using StudyProject.Domain.Interfaces.Repository;
 using StudyProject.Infra.Context;
-using StudyProject.Infra.Data.Repositories;
 using StudyProject.Infra.Repository.Common;
+using StudyProject.Infra.Repository.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
