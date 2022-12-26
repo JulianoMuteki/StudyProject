@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  study-project-api:
+    hostname: study-project-api
+    ports:
+      - "8003:80" 
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+    volumes:
+      - /mnt/c/Users/julia/AppData/Roaming/Microsoft/UserSecrets/$USER_SECRETS_ID:/root/.microsoft/usersecrets/$USER_SECRETS_ID     
+    networks:
+      - study-project-network
+  study-project-db:
+    environment:
+      SA_PASSWORD: ${DATABASE_DEFAULT_PASSWORD}
+    hostname: host-study-project
+    healthcheck:
+        test: /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "$$SA_PASSWORD" -Q "SELECT 1" || exit 1
+        interval: 2s
+        timeout: 3s
+        retries: 5
+        start_period: 1s    
+    ports:
+      - 1433:1433
+    networks:
+      - study-project-network
+networks:
+  study-project-network:
+    name: study-project-network

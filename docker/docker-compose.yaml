@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  study-project-api:
+    image: study-project:latest
+    container_name: "study-project-api-${ENVIRONMENT}"
+    build:
+      context: ../
+      dockerfile: Dockerfile
+    links:
+      - study-project-db
+    depends_on:
+      study-project-db:
+        condition: service_healthy
+    
+  study-project-db:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: "study-project-db-${ENVIRONMENT}"    
+    restart: always
+    environment:
+      ACCEPT_EULA: Y
+      MSSQL_PID: Developer
+networks:
+  study-project-network:
+    driver: bridge
