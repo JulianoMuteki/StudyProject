@@ -5,7 +5,7 @@ WORKDIR /app
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY /src/StudyProject.WebApi/StudyProject.WebApi.csproj src/StudyProject.WebApi/
+COPY ["src/StudyProject.WebApi/StudyProject.WebApi.csproj", "src/StudyProject.WebApi/"]
 COPY ["src/StudyProject.Secutity/StudyProject.Secutity.csproj", "src/StudyProject.Secutity/"]
 COPY ["src/StudyProject.Application/StudyProject.Application.csproj", "src/StudyProject.Application/"]
 COPY ["src/StudyProject.Domain/StudyProject.Domain.csproj", "src/StudyProject.Domain/"]

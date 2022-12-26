@@ -37,6 +37,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - Docker", "5 - Docker", 
 	ProjectSection(SolutionItems) = preProject
 		.env.dev = .env.dev
 		docker-compose.yaml = docker-compose.yaml
+		secret.json = secret.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Containers", "Containers", "{F9F8D782-7817-4709-8C1F-BD66474CCA6D}"
+	ProjectSection(SolutionItems) = preProject
+		docker\.env.dev = docker\.env.dev
+		docker\docker-compose.dev.yaml = docker\docker-compose.dev.yaml
+		docker\docker-compose.yaml = docker\docker-compose.yaml
 		Dockerfile = Dockerfile
 	EndProjectSection
 EndProject

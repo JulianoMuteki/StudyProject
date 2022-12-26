@@ -2,10 +2,13 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using StudyProject.Infra.Context;
 using StudyProject.WebApi.Settings;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+
+
 
 builder.Services.AddControllers()
         .AddNewtonsoftJson(options =>
@@ -70,6 +73,25 @@ StudyProjectService.ConfigureServices(builder);
 
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    try
+    {
+        var db = services.GetRequiredService<StudyProjectContext>();
+        if (db.Database.EnsureCreated())
+        {
+            DbInitializer.Initialize(services);
+        }
+    }
+    catch (Exception ex)
+    {
+        var logger = services.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "An error occurred while seeding the database.");
+        throw;
+    }
+}
 
 if (app.Environment.IsDevelopment())
 {

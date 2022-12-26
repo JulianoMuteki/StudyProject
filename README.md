@@ -25,10 +25,22 @@ Stack project:
  - Docker
  - Azure
  - Tests
- 
+
 What i want to learn: DDD + CQRS + SOLID
  
  References:
   - https://www.freecodecamp.org/
   - https://docs.microsoft.com/en-us/
   - https://stackoverflow.com/
+
+# Instructions:
+## Config USER SECRETS
+ - Create folder with your code USER_SECRETS_ID in /mnt/c/Users/"YOUR_USER"/AppData/Roaming/Microsoft/UserSecrets/$USER_SECRETS_ID
+ - Edit docker\secret.json with datas
+ - Copy docker\secret.json to /mnt/c/Users/julia/AppData/Roaming/Microsoft/UserSecrets/$USER_SECRETS_ID
+ - Add USER_SECRETS_ID code in docker\.env.dev
+
+## Docker
+
+docker-compose -f docker-compose.yaml -f docker-compose.dev.yaml --env-file .env.dev build
+docker-compose -f docker-compose.yaml -f docker-compose.dev.yaml --env-file .env.dev up -d
