@@ -18,6 +18,8 @@
         {
             services.AddScoped<IClientApplicationService, ClientApplicationService>();
             services.AddTransient<ICustomEmailSender, CustomEmailSender>();
+            services.AddTransient<IProductApplicationService, ProductApplicationService>();
+            
             return services;
         }
     }

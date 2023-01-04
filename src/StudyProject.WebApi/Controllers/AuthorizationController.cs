@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using StudyProject.Domain.Interfaces.Application;
+using StudyProject.Domain.Identity;
 using StudyProject.Secutity.Auth;
 
 namespace StudyProject.WebApi.Controllers
@@ -9,25 +10,30 @@ namespace StudyProject.WebApi.Controllers
     [ApiController]
     [Route("api/[controller]")]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-    public class ProductController : Controller
+    [AuthorizeEnum(RoleAuthorize.Admin, RoleAuthorize.Manager)]
+    public class AuthorizationController : Controller
     {
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IConfiguration _configuration;
         private readonly ILogger _logger;
-        private readonly IProductApplicationService _productApplicationService;
-        public ProductController(
-                     ILogger<AccountController> logger, IConfiguration configuration, IProductApplicationService productApplicationService)
+        public AuthorizationController(
+           UserManager<ApplicationUser> userManager,
+           SignInManager<ApplicationUser> signInManager,
+           ILogger<AccountController> logger, IConfiguration configuration)
         {
-            _productApplicationService = productApplicationService;
+            _userManager = userManager;
+            _signInManager = signInManager;
             _logger = logger;
             _configuration = configuration;
         }
         [HttpGet]
+        [AuthorizePolicyEnum(PERMISSIONS.Index)]
         public IActionResult Get()
         {
             try
             {
-                var products = _productApplicationService.GetAll();
-                return Ok(products);
+                return Ok("Index Succeeded");
             }
             catch
             {

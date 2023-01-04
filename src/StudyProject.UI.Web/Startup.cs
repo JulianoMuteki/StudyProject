@@ -1,5 +1,6 @@
 ﻿namespace StudyProject.UI.WebCore
 {
+    using CategoriasMvc.Services;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
@@ -13,6 +14,7 @@
     using StudyProject.Domain.Security;
     using StudyProject.Infra.Context;
     using System;
+    using System.Net.Http.Headers;
 
     public class Startup
     {
@@ -82,8 +84,22 @@
 
             services.AddAutoMapperSetup();
 
+            services.AddHttpClient("AutenticaApi", c =>
+            {
+                c.BaseAddress = new Uri(Configuration["ServiceUri:AutenticaApi"]);
+                c.DefaultRequestHeaders.Accept.Clear();
+                c.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            });
+            services.AddHttpClient("ProdutosApi", c =>
+            {
+                c.BaseAddress = new Uri(Configuration["ServiceUri:ProdutosApi"]);
+            });
+
             services.RegisterInfraBootStrapper();
             services.RegisterApplicationBootStrapper();
+
+            services.AddScoped<IProdutoService, ProdutoService>();
+            services.AddScoped<IAutenticacao, Autenticacao>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

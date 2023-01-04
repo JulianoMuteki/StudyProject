@@ -12,12 +12,7 @@ namespace StudyProject.WebApi.Extensions
 
             if (!context.Database.CanConnect())
             {
-                bool isOk = context.Database.EnsureCreated();
-                if (!isOk)
-                {
-
-                    logger.LogWarning("EnsureCreated failed");
-                }
+                context.Database.Migrate();
             }
             else if (context.Database.GetPendingMigrations().Count() > 0)
                 context.Database.Migrate();
