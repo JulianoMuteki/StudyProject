@@ -9,7 +9,8 @@ namespace StudyProject.Application.AutoMapper
         public ClientProfile()
         {
             CreateMap<Client, ClientVM>();
-            CreateMap<ClientVM, Client>();
+            CreateMap<ClientVM, Client>()
+                .ForMember(dest => dest.ClientsProductsValues, opt => opt.Ignore());
         }
     }
 }

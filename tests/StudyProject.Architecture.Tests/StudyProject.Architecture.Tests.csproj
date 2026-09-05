@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\StudyProject.Domain\StudyProject.Domain.csproj" />
+    <ProjectReference Include="..\..\src\StudyProject.Application\StudyProject.Application.csproj" />
+    <ProjectReference Include="..\..\src\StudyProject.Infra.Context\StudyProject.Infra.Context.csproj" />
+    <ProjectReference Include="..\..\src\StudyProject.Infra.Data\StudyProject.Infra.Repository.csproj" />
+    <ProjectReference Include="..\..\src\StudyProject.CrossCutting.Ioc\StudyProject.CrossCutting.Ioc.csproj" />
+    <ProjectReference Include="..\..\src\StudyProject.Secutity\StudyProject.Secutity.csproj" />
+    <PackageReference Include="NetArchTest.Rules" Version="1.3.2" />
+  </ItemGroup>
+
+</Project>

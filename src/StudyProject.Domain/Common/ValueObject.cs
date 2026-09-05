@@ -86,6 +86,12 @@ namespace StudyProject.Domain.Common
 
         public static bool operator ==(ValueObject<T> x, ValueObject<T> y)
         {
+            if (ReferenceEquals(x, y))
+                return true;
+
+            if (ReferenceEquals(x, null) || ReferenceEquals(y, null))
+                return false;
+
             return x.Equals(y);
         }
 
