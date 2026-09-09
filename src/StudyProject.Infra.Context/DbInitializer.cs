@@ -17,9 +17,9 @@ namespace StudyProject.Infra.Context
 
                 SeedData(userManager, roleManager);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
 

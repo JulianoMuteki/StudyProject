@@ -20,7 +20,7 @@ namespace StudyProject.Domain.Entities
 
         public void Init()
         {
-            if(this.ID == null || this.ID == Guid.Empty)
+            if(this.ID == Guid.Empty)
             {
                 base.InitData();
             }

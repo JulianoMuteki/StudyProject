@@ -86,8 +86,6 @@ namespace StudyProject.WebApi.Controllers
                 return Ok("Changeded Succeeded");
             }else
                 return BadRequest(changePasswordResult.Errors);
-
-            return BadRequest("Error in change password");
         }
 
         [HttpDelete("{email}")]

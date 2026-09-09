@@ -41,7 +41,7 @@ namespace StudyProject.Application.Services
                 client.Send(mailMessage);
                 return Task.CompletedTask;
             }
-            catch (Exception ex)
+            catch
             {
                 return Task.CompletedTask;
             }           

@@ -19,7 +19,7 @@ namespace StudyProject.Application
 
         public async Task<IEnumerable<Client>> GetAllClient()
         {
-            return await _unitOfWork.Repository<Client>().GetAll().AsQueryable().ToListAsync();
+            return await _unitOfWork.Repository<Client>().GetAllAsync();
         }
 
         public ICollection<Client> GetAll()

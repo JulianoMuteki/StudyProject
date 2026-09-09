@@ -13,7 +13,7 @@ public class ValidateBaseTests
     [Fact]
     public void Should_ReturnTrue_When_ModelIsValid()
     {
-        var client = new Client { Name = "Juliano", Email = "j@example.com" };
+        var client = new Client { Name = "Juliano", LastName = "Pestili", Email = "j@example.com" };
 
         var ok = _validate.Validate(client, new ClientValidator());
 

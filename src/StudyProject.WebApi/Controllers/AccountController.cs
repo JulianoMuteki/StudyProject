@@ -69,10 +69,10 @@ namespace StudyProject.WebApi.Controllers
                     _logger.LogInformation("User logged in.");                    
                     
                     var claims = await ApplicationUserService.GetClaimsByUser(existingUser, _roleManager, _userManager);
-                    return Ok(CustomToken.GenerateToken(model.Email, _configuration["Jwt:key"],
-                                                             _configuration["TokenConfiguration:ExpireHours"],
-                                                             _configuration["TokenConfiguration:Issuer"],
-                                                             _configuration["TokenConfiguration:Audience"],
+                    return Ok(CustomToken.GenerateToken(model.Email, _configuration["Jwt:key"]!,
+                                                             _configuration["TokenConfiguration:ExpireHours"]!,
+                                                             _configuration["TokenConfiguration:Issuer"]!,
+                                                             _configuration["TokenConfiguration:Audience"]!,
                                                              claims));
                 }
                 if (result.IsLockedOut)
@@ -121,11 +121,11 @@ namespace StudyProject.WebApi.Controllers
                     {
                         var newuser = await _userManager.FindByEmailAsync(model.Email);
 
-                        var codeEmailConfirmation = await _userManager.GenerateEmailConfirmationTokenAsync(newuser);
+                        var codeEmailConfirmation = await _userManager.GenerateEmailConfirmationTokenAsync(newuser!);
 
-                        await _customEmailSender.SendEmailAsync(newuser.Email, "StudyProject TOKEN", codeEmailConfirmation);
+                        await _customEmailSender.SendEmailAsync(newuser!.Email, "StudyProject TOKEN", codeEmailConfirmation);
                     }
-                    catch (Exception ex)
+                    catch
                     {
 
                     }

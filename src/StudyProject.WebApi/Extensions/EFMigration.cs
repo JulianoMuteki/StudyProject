@@ -8,7 +8,7 @@ namespace StudyProject.WebApi.Extensions
         public static void MigrateOfContext<T>(this IApplicationBuilder app, StudyProjectContext context) where T : StudyProjectContext
         {           
             var logger = app.ApplicationServices.GetService<ILogger<IApplicationBuilder>>();
-            logger.LogWarning("Connectionstring: {0}", context.Database.GetConnectionString());
+            logger?.LogWarning("Connectionstring: {0}", context.Database.GetConnectionString());
 
             if (!context.Database.CanConnect())
             {

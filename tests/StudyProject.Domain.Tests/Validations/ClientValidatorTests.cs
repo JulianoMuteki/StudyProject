@@ -10,11 +10,22 @@ public class ClientValidatorTests
     private readonly ClientValidator _validator = new();
 
     [Fact]
-    public void Should_Pass_When_NameAndEmailProvided()
+    public void Should_Pass_When_NameLastNameAndEmailProvided()
+    {
+        var client = new Client { Name = "Juliano", LastName = "Pestili", Email = "j@example.com" };
+
+        _validator.Validate(client).IsValid.Should().BeTrue();
+    }
+
+    [Fact]
+    public void Should_Fail_When_LastNameIsNull()
     {
         var client = new Client { Name = "Juliano", Email = "j@example.com" };
 
-        _validator.Validate(client).IsValid.Should().BeTrue();
+        var result = _validator.Validate(client);
+
+        result.IsValid.Should().BeFalse();
+        result.Errors.Should().Contain(e => e.PropertyName == nameof(Client.LastName));
     }
 
     [Fact]

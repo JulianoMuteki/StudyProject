@@ -14,9 +14,9 @@ namespace StudyProject.Domain.Interfaces.Base
 
         Task<ICollection<T>> GetAllAsync();
 
-        T GetById(int id);
+        T GetById(Guid id);
 
-        Task<T> GetByIdAsync(int id);
+        Task<T> GetByIdAsync(Guid id);
 
         T GetByUniqueId(string id);
 

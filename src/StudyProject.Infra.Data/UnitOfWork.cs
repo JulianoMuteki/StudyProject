@@ -15,11 +15,7 @@ namespace StudyProject.Infra.Repository
         private readonly StudyProjectContext _dbContext;
         private readonly Dictionary<Type, object> _repositories = new Dictionary<Type, object>();
 
-        public Dictionary<Type, object> Repositories
-        {
-            get { return _repositories; }
-            set { Repositories = value; }
-        }
+        public Dictionary<Type, object> Repositories => _repositories;
 
         public UnitOfWork(StudyProjectContext dbContext)
         {
@@ -40,11 +36,7 @@ namespace StudyProject.Infra.Repository
 
         private readonly Dictionary<Type, object> _repositoriesCustom = new Dictionary<Type, object>();
 
-        public Dictionary<Type, object> RepositoriesCustom
-        {
-            get { return _repositoriesCustom; }
-            set { RepositoriesCustom = value; }
-        }
+        public Dictionary<Type, object> RepositoriesCustom => _repositoriesCustom;
 
         public T RepositoryCustom<T>() where T : class
         {

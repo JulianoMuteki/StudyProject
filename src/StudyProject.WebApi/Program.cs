@@ -65,7 +65,7 @@ builder.Services.AddAuthentication(option =>
                      ValidIssuer = builder.Configuration["TokenConfiguration:Issuer"],
                      ValidateIssuerSigningKey = true,
                      IssuerSigningKey = new SymmetricSecurityKey(
-                         Encoding.UTF8.GetBytes(builder.Configuration["Jwt:key"]))
+                         Encoding.UTF8.GetBytes(builder.Configuration["Jwt:key"]!))
                  });
 
 StudyProjectService.ConfigureServices(builder);
@@ -98,10 +98,7 @@ app.UseAuthentication();
 
 app.UseAuthorization();
 
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllers();
-});
+app.MapControllers();
 
 using (var scope = app.Services.CreateScope())
 {

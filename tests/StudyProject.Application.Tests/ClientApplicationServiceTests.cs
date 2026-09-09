@@ -42,4 +42,21 @@ public class ClientApplicationServiceTests
 
         _service.GetAll().Should().BeEmpty();
     }
+
+    [Fact]
+    public async Task GetAllClient_Should_Return_RepositoryClientsAsync()
+    {
+        var clients = new List<Client>
+        {
+            new() { Name = "A" },
+            new() { Name = "B" }
+        };
+        _repository.GetAllAsync().Returns(Task.FromResult<ICollection<Client>>(clients));
+
+        var result = await _service.GetAllClient();
+
+        result.Should().HaveCount(2);
+        _unitOfWork.Received(1).Repository<Client>();
+        await _repository.Received(1).GetAllAsync();
+    }
 }
